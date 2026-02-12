@@ -1,79 +1,71 @@
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
-      {/* Barra de Navegación Estilo DJ */}
-      <nav className="p-5 bg-zinc-900 shadow-xl flex justify-between items-center border-b border-zinc-800 sticky top-0 z-50">
-        <h1 className="text-2xl font-black tracking-tighter text-white">
-          GLOBAL <span className="text-yellow-400">MUSIC DJ</span>
-        </h1>
+    <div className="min-h-screen bg-zinc-950 text-white font-sans">
+      {/* Barra de Navegación */}
+      <nav className="p-5 bg-black/80 backdrop-blur-md shadow-xl flex justify-between items-center border-b border-red-900/30 sticky top-0 z-50">
+        <div className="flex flex-col leading-none">
+          <h1 className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
+            PERU <span className="text-red-600">MUSIC DJ</span>
+          </h1>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold ml-1">
+            exclusive
+          </span>
+        </div>
         <div className="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-widest">
-          <a href="#tracks" className="hover:text-yellow-400 transition">Tracks</a>
-          <a href="#sets" className="hover:text-yellow-400 transition">DJ Sets</a>
-          <span className="bg-yellow-400 text-black px-3 py-1 rounded-full">Free Download</span>
+          <a href="#tracks" className="hover:text-red-500 transition">Tracks</a>
+          <span className="bg-red-600 text-white px-3 py-1 rounded-sm italic">Live Now</span>
         </div>
       </nav>
 
-      {/* Hero Section: Estilo Escenario */}
-      <header className="py-28 px-6 text-center bg-gradient-to-b from-zinc-900 to-black border-b border-zinc-800">
-        <h2 className="text-6xl md:text-8xl font-black mb-6 tracking-tighter">
-          THE SOUND <br/> <span className="text-yellow-400 underline decoration-white">OF THE WORLD</span>
-        </h2>
+      {/* Hero Section */}
+      <header className="py-28 px-6 text-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-black">
+        <div className="mb-6 inline-block">
+            <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8] mb-2">
+              PERU <br/> MUSIC DJ
+            </h2>
+            <p className="text-red-600 font-bold tracking-[0.8em] uppercase text-sm md:text-xl">
+              exclusive
+            </p>
+        </div>
         <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-10 font-medium">
-          Explora y descarga música, samples y sets exclusivos de GLOBAL MUSIC DJ. 
-          Contenido libre para tu creatividad, sin registros.
+          La plataforma definitiva para el movimiento DJ en Perú. 
+          Recursos, música y sets exclusivos para profesionales.
         </p>
         <div className="flex justify-center">
-          <a href="#tracks" className="bg-white text-black px-12 py-4 rounded-full font-black uppercase text-sm hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-            Escuchar Ahora
+          <a href="#tracks" className="bg-red-600 text-white px-12 py-4 rounded-none font-black uppercase text-sm hover:bg-white hover:text-black transition-all shadow-[0_0_30px_rgba(220,38,38,0.4)]">
+            Acceder al Repositorio
           </a>
         </div>
       </header>
 
-      {/* Grid de Contenido Musical */}
+      {/* Secciones de Contenido */}
       <main id="tracks" className="max-w-6xl mx-auto py-24 px-6">
-        <div className="mb-16">
-          <h3 className="text-4xl font-black uppercase tracking-tighter italic">Top Downloads</h3>
-          <p className="text-zinc-500">Acceso total a la biblioteca de Global Music DJ.</p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 gap-10">
           
-          {/* Tarjeta 1: Tracks */}
-          <div className="bg-zinc-900 p-8 rounded-none border-l-4 border-yellow-400 hover:bg-zinc-800 transition-all group">
-            <div className="text-5xl mb-6 group-hover:animate-pulse">🎧</div>
-            <h4 className="font-black text-2xl mb-3 uppercase">Exclusives Tracks</h4>
-            <p className="text-zinc-500 text-sm mb-6 leading-relaxed">Versiones extendidas y remixes exclusivos listos para tus presentaciones.</p>
-            <button className="w-full py-3 border-2 border-white font-black uppercase text-xs hover:bg-white hover:text-black transition-colors">Download MP3 ↓</button>
+          <div className="bg-zinc-900/50 p-10 border border-zinc-800 hover:border-red-600/50 transition-all">
+            <h4 className="font-black text-3xl mb-4 uppercase italic">Pro-Sets</h4>
+            <p className="text-zinc-500 mb-8">Descarga sesiones grabadas en vivo con la mejor calidad de audio para tus eventos.</p>
+            <button className="text-red-500 font-bold uppercase tracking-widest text-xs hover:underline">Ver catálogo →</button>
           </div>
 
-          {/* Tarjeta 2: Sample Packs */}
-          <div className="bg-zinc-900 p-8 rounded-none border-l-4 border-white hover:bg-zinc-800 transition-all group">
-            <div className="text-5xl mb-6 group-hover:animate-pulse">🎹</div>
-            <h4 className="font-black text-2xl mb-3 uppercase">Sample Packs</h4>
-            <p className="text-zinc-500 text-sm mb-6 leading-relaxed">Librerías de percusión y efectos para productores musicales libres de derechos.</p>
-            <button className="w-full py-3 border-2 border-white font-black uppercase text-xs hover:bg-white hover:text-black transition-colors">Download Pack ↓</button>
-          </div>
-
-          {/* Tarjeta 3: Radio Sets */}
-          <div className="bg-zinc-900 p-8 rounded-none border-l-4 border-yellow-400 hover:bg-zinc-800 transition-all group">
-            <div className="text-5xl mb-6 group-hover:animate-pulse">📻</div>
-            <h4 className="font-black text-2xl mb-3 uppercase">Live Sets</h4>
-            <p className="text-zinc-500 text-sm mb-6 leading-relaxed">Grabaciones en alta calidad de las mejores sesiones de GLOBAL MUSIC DJ.</p>
-            <button className="w-full py-3 border-2 border-white font-black uppercase text-xs hover:bg-white hover:text-black transition-colors">Get Session ↓</button>
+          <div className="bg-zinc-900/50 p-10 border border-zinc-800 hover:border-red-600/50 transition-all">
+            <h4 className="font-black text-3xl mb-4 uppercase italic">Exclusive Tools</h4>
+            <p className="text-zinc-500 mb-8">Efectos de sonido, intros y herramientas diseñadas para DJs peruanos.</p>
+            <button className="text-red-500 font-bold uppercase tracking-widest text-xs hover:underline">Descargar ahora →</button>
           </div>
 
         </div>
       </main>
 
-      {/* Footer Estilo Dark */}
-      <footer className="bg-zinc-950 border-t border-zinc-900 py-20 px-6 text-center">
-        <h4 className="text-3xl font-black mb-4 tracking-tighter">GLOBAL <span className="text-yellow-400">MUSIC DJ</span></h4>
-        <p className="text-zinc-600 max-w-md mx-auto mb-10 text-xs font-bold uppercase tracking-widest">
-          Powering the dancefloor worldwide.
-        </p>
-        <div className="text-zinc-700 text-[10px] font-bold uppercase tracking-[0.3em]">
-          © 2026 Global Music DJ Network - Todos los derechos de sonido reservados.
+      {/* Footer */}
+      <footer className="bg-black py-20 px-6 text-center border-t border-zinc-900">
+        <div className="flex flex-col items-center leading-none mb-8">
+          <h4 className="text-2xl font-black uppercase tracking-tighter">PERU <span className="text-red-600">MUSIC DJ</span></h4>
+          <span className="text-[9px] uppercase tracking-[0.5em] text-zinc-600 font-bold">exclusive</span>
         </div>
+        <p className="text-zinc-700 text-[10px] font-bold uppercase tracking-[0.3em]">
+          © 2026 PERU MUSIC DJ NETWORK - PUNO, PERÚ.
+        </p>
       </footer>
     </div>
   );
