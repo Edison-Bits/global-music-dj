@@ -41,7 +41,7 @@ export default function Home() {
           <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
             PERU <br/> MUSIC DJ
           </h2>
-          <p className="text-red font-black tracking-[1em] uppercase text-sm md:text-2xl drop-shadow-[0_0_15px_rgba(255,255,255,1)] relative z-10">
+          <p className="text-red-600 font-black tracking-[1em] uppercase text-sm md:text-2xl drop-shadow-[0_0_15px_rgba(220,38,38,1)] relative z-10">
             exclusive
           </p>
         </div>
