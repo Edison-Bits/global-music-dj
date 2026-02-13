@@ -1,11 +1,11 @@
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans">
-      {/* Barra de Navegación Actualizada */}
+      {/* Barra de Navegación Uniforme */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           
-          {/* Logo a la izquierda */}
+          {/* Logo PERU MUSIC DJ */}
           <div className="flex flex-col leading-none">
             <h1 className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
               PERU <span className="text-red-600">MUSIC DJ</span>
@@ -15,15 +15,15 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Botones a la derecha con efecto de recuadro */}
-          <div className="hidden lg:flex space-x-2 text-[9px] font-bold uppercase tracking-widest items-center">
-            <a href="#librerias" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Librerías</a>
-            <a href="#samples" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Samples</a>
-            <a href="#efectos" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Efectos</a>
-            <a href="#pack" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Pack</a>
-            <a href="#set-dj" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Set DJ</a>
-            <a href="#colecciones" className="border border-red-600 px-3 py-1.5 rounded-sm hover:bg-red-600 hover:text-white transition-all duration-300">Colecciones DJ</a>
-            <a href="#backup" className="border border-white px-3 py-1.5 rounded-sm bg-white text-black hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300">Backup</a>
+          {/* Menú de Botones (Todos con borde rojo y fondo negro) */}
+          <div className="hidden lg:flex space-x-3 text-[10px] font-black uppercase tracking-widest items-center">
+            <a href="#librerias" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</a>
+            <a href="#samples" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</a>
+            <a href="#efectos" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Efectos</a>
+            <a href="#pack" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Pack</a>
+            <a href="#set-dj" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Set DJ</a>
+            <a href="#colecciones" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Colecciones DJ</a>
+            <a href="#backup" className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Backup</a>
           </div>
 
         </div>
@@ -41,43 +41,12 @@ export default function Home() {
         </div>
         <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-12 font-medium">
           La central de recursos más completa para el DJ peruano.
-          Descargas exclusivas, herramientas de mezcla y soporte total.
         </p>
-        <div className="flex justify-center">
-          <a href="#librerias" className="bg-white text-black px-14 py-4 rounded-none font-black uppercase text-sm hover:bg-red-600 hover:text-white transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-            Explorar Repositorio
-          </a>
-        </div>
       </header>
 
-      {/* Secciones de Contenido */}
-      <main className="max-w-7xl mx-auto py-20 px-6">
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-zinc-900/30 p-8 border border-zinc-800 hover:border-red-600/50 transition-all group">
-            <h4 className="font-black text-2xl mb-4 uppercase italic">Librerías Premium</h4>
-            <p className="text-zinc-500 text-sm mb-6">Sonidos de alta calidad seleccionados para producciones profesionales.</p>
-            <div className="h-1 w-10 bg-red-600 group-hover:w-full transition-all duration-500"></div>
-          </div>
-          <div className="bg-zinc-900/30 p-8 border border-zinc-800 hover:border-red-600/50 transition-all group">
-            <h4 className="font-black text-2xl mb-4 uppercase italic">Samples & FX</h4>
-            <p className="text-zinc-500 text-sm mb-6">Intros, disparadores y efectos de transición para tus sets en directo.</p>
-            <div className="h-1 w-10 bg-red-600 group-hover:w-full transition-all duration-500"></div>
-          </div>
-          <div className="bg-zinc-900/30 p-8 border border-zinc-800 hover:border-red-600/50 transition-all group">
-            <h4 className="font-black text-2xl mb-4 uppercase italic">Colecciones</h4>
-            <p className="text-zinc-500 text-sm mb-6">Música organizada por géneros y épocas lista para sonar.</p>
-            <div className="h-1 w-10 bg-red-600 group-hover:w-full transition-all duration-500"></div>
-          </div>
-        </div>
-      </main>
-
       {/* Footer */}
-      <footer className="bg-black py-20 px-6 text-center border-t border-zinc-900">
-        <div className="flex flex-col items-center leading-none mb-6">
-          <h4 className="text-2xl font-black uppercase tracking-tighter">PERU <span className="text-red-600">MUSIC DJ</span></h4>
-          <span className="text-[9px] uppercase tracking-[0.5em] text-zinc-600 font-bold">exclusive</span>
-        </div>
-        <p className="text-zinc-700 text-[10px] font-bold uppercase tracking-[0.3em]">
+      <footer className="bg-black py-20 px-6 text-center border-t border-zinc-900 font-bold">
+        <p className="text-zinc-700 text-[10px] uppercase tracking-[0.3em]">
           © 2026 PERU MUSIC DJ NETWORK - PUNO, PERÚ.
         </p>
       </footer>
