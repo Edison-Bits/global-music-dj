@@ -16,7 +16,6 @@ export default function Home() {
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           
-          {/* Logo con espacio extra abajo solo en celulares */}
           <div className="flex flex-col leading-none cursor-pointer text-center md:text-left mb-4 md:mb-0" onClick={cerrarSeccion}>
             <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase">
               PERU <span className="text-red-600">MUSIC DJ</span>
@@ -24,7 +23,6 @@ export default function Home() {
             <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-zinc-500 font-bold ml-1">exclusive</span>
           </div>
 
-          {/* Menú de Botones: Se adaptan al tamaño de la pantalla como bloques interactivos */}
           <div className="flex flex-wrap justify-center md:justify-end gap-2 w-full md:w-auto text-[10px] font-black uppercase tracking-widest">
             {['Librerías', 'Samples', 'Efectos', 'Pack', 'Set DJ', 'Colecciones DJ', 'Backup'].map((item) => (
               <button 
@@ -47,10 +45,15 @@ export default function Home() {
         <header className="py-32 md:py-40 px-4 text-center bg-cover bg-center bg-no-repeat relative flex flex-col justify-center min-h-[70vh]" style={{ backgroundImage: "url('/fondo.avif')" }}>
           <div className="absolute inset-0 bg-black/70 z-0"></div>
           <div className="relative z-10">
-            {/* Títulos ajustados para no salirse de la pantalla en móviles */}
             <h2 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">PERU <br/> MUSIC DJ</h2>
-            <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)]">exclusive</p>
+            <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)] mb-8">exclusive</p>
           </div>
+          
+          {/* AQUÍ ESTÁ TU FRASE DE VUELTA, INGE */}
+          <p className="text-xs sm:text-sm md:text-lg text-white max-w-2xl mx-auto mt-4 font-black drop-shadow-[0_0_15px_rgba(255,255,255,1)] relative z-10 px-2 leading-relaxed tracking-wide">
+            La central de recursos más completa para el DJ peruano.
+          </p>
+
         </header>
       ) : (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 animate-in fade-in duration-500">
@@ -66,7 +69,6 @@ export default function Home() {
 
           {seccionAbierta === 'Pack' ? (
             !packAbierto ? (
-              /* CATÁLOGO DE TARJETAS EN MÓVIL (1 columna en celular, 3 en PC) */
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
                   <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">
@@ -101,7 +103,6 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              /* VISTA DEL PACK ADENTRO (Optimizada para dedos en pantallas táctiles) */
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
                 
                 <button 
