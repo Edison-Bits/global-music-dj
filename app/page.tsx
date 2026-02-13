@@ -2,18 +2,18 @@
 import { useState } from 'react';
 
 export default function Home() {
-  // Estado para controlar qué sección está abierta
-  const [seccionAbierta, setSeccionAbierta] = useState(null);
+  // CORRECCIÓN PARA TODOS LOS BOTONES:
+  const [seccionAbierta, setSeccionAbierta] = useState<string | null>(null);
 
   const cerrarSeccion = () => setSeccionAbierta(null);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans">
-      {/* Barra de Navegación */}
+      {/* Barra de Navegación Uniforme */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           
-          {/* Logo - Al hacer clic vuelve al inicio */}
+          {/* Logo PERU MUSIC DJ */}
           <div className="flex flex-col leading-none cursor-pointer" onClick={cerrarSeccion}>
             <h1 className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
               PERU <span className="text-red-600">MUSIC DJ</span>
@@ -23,7 +23,7 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Menú de Botones - Configurados para ACTIVAR la navegación */}
+          {/* Menú de Botones - Error Corregido en todos */}
           <div className="hidden lg:flex space-x-3 text-[10px] font-black uppercase tracking-widest items-center">
             <button onClick={() => setSeccionAbierta('Librerías')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</button>
             <button onClick={() => setSeccionAbierta('Samples')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</button>
@@ -36,9 +36,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* LÓGICA DE VISUALIZACIÓN */}
+      {/* Lógica para entrar y salir */}
       {!seccionAbierta ? (
-        /* PORTADA (Solo se ve si no hay botón presionado) */
         <header 
           className="py-40 px-6 text-center bg-cover bg-center bg-no-repeat relative"
           style={{ backgroundImage: "url('/fondo.avif')" }}
@@ -58,7 +57,6 @@ export default function Home() {
           </p>
         </header>
       ) : (
-        /* VISTA DE SECCIÓN (Se ve cuando presionas un botón) */
         <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in duration-300">
           <button 
             onClick={cerrarSeccion}
@@ -72,11 +70,10 @@ export default function Home() {
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Tarjetas vacías con el estilo de DJ Ventu */}
             {[1, 2, 3].map((i) => (
               <div key={i} className="bg-[#0a0f1a] border border-zinc-900 p-6 rounded-[2rem] opacity-40">
-                <div className="aspect-square bg-zinc-950 rounded-3xl border border-zinc-900 mb-6 flex items-center justify-center">
-                  <span className="text-zinc-800 font-black uppercase tracking-widest text-xs italic">Próximamente...</span>
+                <div className="aspect-square bg-zinc-950 rounded-3xl border border-zinc-900 mb-6 flex items-center justify-center text-zinc-800 font-black uppercase text-xs tracking-widest">
+                  Próximamente...
                 </div>
               </div>
             ))}
@@ -84,7 +81,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Footer */}
       <footer className="bg-black py-20 px-6 text-center border-t border-zinc-900 font-bold">
         <p className="text-zinc-700 text-[10px] uppercase tracking-[0.3em]">
           © 2026 PERU MUSIC DJ NETWORK - PUNO, PERÚ.
