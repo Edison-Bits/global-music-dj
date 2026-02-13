@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 export default function Home() {
-  // Estado corregido para que funcione en todos los botones sin errores de TypeScript
+  // Estado para controlar la navegación entre secciones
   const [seccionAbierta, setSeccionAbierta] = useState<string | null>(null);
 
   const cerrarSeccion = () => setSeccionAbierta(null);
@@ -21,7 +21,7 @@ export default function Home() {
             <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold ml-1">exclusive</span>
           </div>
 
-          {/* Menú de Botones - Configurados para ingresar a cada sección */}
+          {/* Menú de Botones */}
           <div className="hidden lg:flex space-x-3 text-[10px] font-black uppercase tracking-widest items-center">
             <button onClick={() => setSeccionAbierta('Librerías')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</button>
             <button onClick={() => setSeccionAbierta('Samples')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</button>
@@ -35,7 +35,7 @@ export default function Home() {
       </nav>
 
       {!seccionAbierta ? (
-        /* PORTADA ORIGINAL INTACTA (Fondo de consola DJ) */
+        /* PORTADA ORIGINAL INTACTA */
         <header className="py-40 px-6 text-center bg-cover bg-center bg-no-repeat relative" style={{ backgroundImage: "url('/fondo.avif')" }}>
           <div className="absolute inset-0 bg-black/70 z-0"></div>
           <div className="relative z-10">
@@ -55,15 +55,22 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {seccionAbierta === 'Pack' ? (
-              /* TARJETA PERSONALIZADA: CARNAVALES AYACUCHANOS 2026 - DJ VENTU */
-              <div className="bg-[#0a0f1a] border border-zinc-800 p-6 rounded-[2rem] relative group hover:border-green-500/50 transition-all shadow-2xl">
-                <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg shadow-[0_0_15px_rgba(30,215,96,0.4)]">
+              /* TARJETA CON TU PORTADA REAL */
+              <div className="bg-[#0a0f1a] border border-zinc-800 p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
+                <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">
                   FREE GRATIS
                 </div>
-                <div className="aspect-square bg-black rounded-3xl flex flex-col items-center justify-center border border-zinc-800 mb-6 group-hover:border-zinc-600 transition-colors">
-                  <span className="text-4xl font-serif italic text-white">DJ</span>
-                  <span className="text-2xl font-sans font-light tracking-tighter text-white uppercase">Ventu</span>
+
+                {/* IMAGEN DE PORTADA CARGADA DESDE PUBLIC */}
+                <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 bg-black relative">
+                  <img 
+                    src="/portada-ayacucho.jpg" 
+                    alt="Lista de música DJ Ventu"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
                 </div>
+
                 <div className="text-left px-2">
                   <h4 className="text-white font-black text-lg mb-1 uppercase tracking-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
                   <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">Exclusivo: DJ VENTU</p>
