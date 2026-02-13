@@ -1,11 +1,10 @@
-"use client";
-import { useState } from 'react';
+"use client"; // Esta línea quita el error rojo
+import { useState } from 'react'; // Esta línea habilita los botones
 
 export default function Home() {
-  // Estado para controlar qué sección está abierta
+  // Estado para controlar la entrada y salida de cada sección
   const [seccionAbierta, setSeccionAbierta] = useState(null);
 
-  // Función para cerrar y volver al inicio
   const cerrarSeccion = () => setSeccionAbierta(null);
 
   return (
@@ -24,22 +23,21 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Menú de Botones - Ahora con lógica de click */}
+          {/* Menú de Botones con lógica de ingreso */}
           <div className="hidden lg:flex space-x-3 text-[10px] font-black uppercase tracking-widest items-center">
-            <button onClick={() => setSeccionAbierta('librerias')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</button>
-            <button onClick={() => setSeccionAbierta('samples')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</button>
-            <button onClick={() => setSeccionAbierta('efectos')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Efectos</button>
-            <button onClick={() => setSeccionAbierta('pack')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Pack</button>
-            <button onClick={() => setSeccionAbierta('set-dj')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Set DJ</button>
-            <button onClick={() => setSeccionAbierta('colecciones')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Colecciones DJ</button>
-            <button onClick={() => setSeccionAbierta('backup')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Backup</button>
+            <button onClick={() => setSeccionAbierta('Librerías')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</button>
+            <button onClick={() => setSeccionAbierta('Samples')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</button>
+            <button onClick={() => setSeccionAbierta('Efectos')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Efectos</button>
+            <button onClick={() => setSeccionAbierta('Pack')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Pack</button>
+            <button onClick={() => setSeccionAbierta('Set DJ')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Set DJ</button>
+            <button onClick={() => setSeccionAbierta('Colecciones DJ')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Colecciones DJ</button>
+            <button onClick={() => setSeccionAbierta('Backup')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Backup</button>
           </div>
         </div>
       </nav>
 
-      {/* CONTENIDO DINÁMICO */}
       {!seccionAbierta ? (
-        /* PORTADA ORIGINAL (No se toca nada) */
+        /* PORTADA ORIGINAL INTACTA (Fondo de consola DJ) */
         <header 
           className="py-40 px-6 text-center bg-cover bg-center bg-no-repeat relative"
           style={{ backgroundImage: "url('/fondo.avif')" }}
@@ -59,39 +57,30 @@ export default function Home() {
           </p>
         </header>
       ) : (
-        /* VISTA DE CADA BOTÓN (ESTILO DJ VENTU) */
-        <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in zoom-in duration-300">
+        /* CONTENIDO QUE APARECE AL INGRESAR (Botón Volver y Tarjetas) */
+        <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in duration-500">
           <button 
             onClick={cerrarSeccion}
-            className="mb-8 text-zinc-500 hover:text-white font-bold uppercase tracking-widest flex items-center gap-2"
+            className="mb-10 text-zinc-500 hover:text-red-600 font-black uppercase tracking-[0.2em] text-xs transition-colors flex items-center gap-2"
           >
-            ← SALIR AL INICIO
+            ← VOLVER AL INICIO
           </button>
 
-          <h3 className="text-4xl font-black uppercase mb-12 border-l-8 border-red-600 pl-4">
-            Sección: <span className="text-red-600">{seccionAbierta}</span>
+          <h3 className="text-5xl font-black uppercase mb-12 text-white border-l-4 border-red-600 pl-6">
+            {seccionAbierta}
           </h3>
 
-          {/* Grilla de Tarjetas tipo "DJ VENTU" */}
+          {/* Tarjetas vacías con el estilo solicitado */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#0a0f1a] border border-zinc-800 p-6 rounded-[2rem] relative group hover:border-green-500/50 transition-all">
-              <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg shadow-[0_0_15px_rgba(30,215,96,0.4)]">
-                FREE GRATIS
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-[#0a0f1a] border border-zinc-900 p-6 rounded-[2rem] opacity-40">
+                <div className="aspect-square bg-zinc-950 rounded-3xl border border-zinc-900 mb-6 flex items-center justify-center">
+                  <span className="text-zinc-800 font-black uppercase tracking-widest text-xs">Espacio Reservado</span>
+                </div>
+                <div className="h-2 w-full bg-zinc-900 rounded mb-2"></div>
+                <div className="h-2 w-1/2 bg-zinc-900 rounded"></div>
               </div>
-
-              {/* Imagen del Pack */}
-              <div className="aspect-square bg-black rounded-3xl flex flex-col items-center justify-center border border-zinc-800 mb-6 shadow-2xl">
-                <span className="text-4xl font-serif italic">Otros</span>
-                <span className="text-2xl font-sans font-light tracking-tighter">Editores</span>
-              </div>
-
-              <div className="text-left px-2">
-                <h4 className="text-white font-bold text-lg mb-4 uppercase">DJ VENTU 08 02 2026</h4>
-                <a href="#" className="text-[#1ed760] font-black text-xs uppercase tracking-wider flex items-center gap-2 hover:brightness-125">
-                  VER Y DESCARGAR →
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       )}
