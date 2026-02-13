@@ -44,15 +44,15 @@ export default function Home() {
         /* PORTADA PRINCIPAL MÓVIL Y PC */
         <header className="py-32 md:py-40 px-4 text-center bg-cover bg-center bg-no-repeat relative flex flex-col justify-center min-h-[70vh]" style={{ backgroundImage: "url('/fondo.avif')" }}>
           <div className="absolute inset-0 bg-black/70 z-0"></div>
-          <div className="relative z-10">
-            <h2 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">PERU <br/> MUSIC DJ</h2>
-            <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)] mb-8">exclusive</p>
-          </div>
           
-          {/* AQUÍ ESTÁ TU FRASE DE VUELTA, INGE */}
-          <p className="text-xs sm:text-sm md:text-lg text-white max-w-2xl mx-auto mt-4 font-black drop-shadow-[0_0_15px_rgba(255,255,255,1)] relative z-10 px-2 leading-relaxed tracking-wide">
-            La central de recursos más completa para el DJ peruano.
-          </p>
+          {/* AQUÍ ESTÁ EL AJUSTE: Todo en el mismo bloque y bien pegadito */}
+          <div className="relative z-10 flex flex-col items-center">
+            <h2 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">PERU <br/> MUSIC DJ</h2>
+            <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)] mb-2">exclusive</p>
+            <p className="text-xs sm:text-sm md:text-lg text-white max-w-2xl font-black drop-shadow-[0_0_15px_rgba(255,255,255,1)] px-2 leading-relaxed tracking-wide">
+              La central de recursos más completa para el DJ peruano.
+            </p>
+          </div>
 
         </header>
       ) : (
