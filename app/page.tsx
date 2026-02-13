@@ -45,7 +45,7 @@ export default function Home() {
             exclusive
           </p>
         </div>
-        <p className="text-lg text-white max-w-2xl mx-auto mb-12 font-medium">
+        <p className="text-lg text-white max-w-2xl mx-auto mb-12 font-black drop-shadow-[0_0_15px_rgba(255,255,255,1)] relative z-10">
           La central de recursos más completa para el DJ peruano.
         </p>
       </header>
