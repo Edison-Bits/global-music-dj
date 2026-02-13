@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans overflow-x-hidden">
-      {/* NAVEGACIÓN 100% RESPONSIVE (MÓVIL Y PC) */}
+      {/* NAVEGACIÓN 100% RESPONSIVE */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           
@@ -41,11 +41,10 @@ export default function Home() {
       </nav>
 
       {!seccionAbierta ? (
-        /* PORTADA PRINCIPAL MÓVIL Y PC */
+        /* PORTADA PRINCIPAL */
         <header className="py-32 md:py-40 px-4 text-center bg-cover bg-center bg-no-repeat relative flex flex-col justify-center min-h-[70vh]" style={{ backgroundImage: "url('/fondo.avif')" }}>
           <div className="absolute inset-0 bg-black/70 z-0"></div>
           
-          {/* AQUÍ ESTÁ EL AJUSTE: Todo en el mismo bloque y bien pegadito */}
           <div className="relative z-10 flex flex-col items-center">
             <h2 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">PERU <br/> MUSIC DJ</h2>
             <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)] mb-2">exclusive</p>
@@ -53,7 +52,6 @@ export default function Home() {
               La central de recursos más completa para el DJ peruano.
             </p>
           </div>
-
         </header>
       ) : (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 animate-in fade-in duration-500">
@@ -124,9 +122,11 @@ export default function Home() {
                   <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
                   <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">Material Exclusivo de DJ VENTU</p>
                   
+                  {/* AQUÍ ESTÁ TU LINK DE DRIVE OFICIAL */}
                   <a 
-                    href="AQUI_PONES_TU_LINK_DE_GOOGLE_DRIVE" 
+                    href="https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing" 
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-[#1ed760] text-black font-black text-sm md:text-xl uppercase py-4 md:py-5 px-4 md:px-8 rounded-2xl flex md:inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_0_30px_rgba(30,215,96,0.3)] active:scale-95 w-full md:w-auto"
                   >
                     <span className="text-xl md:text-2xl">📥</span> DESCARGAR PACK AHORA
