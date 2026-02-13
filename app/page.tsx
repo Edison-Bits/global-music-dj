@@ -1,19 +1,19 @@
-"use client"; // Esta línea quita el error rojo
-import { useState } from 'react'; // Esta línea habilita los botones
+"use client"; 
+import { useState } from 'react';
 
 export default function Home() {
-  // Estado para controlar la entrada y salida de cada sección
+  // Estado para controlar qué sección está abierta
   const [seccionAbierta, setSeccionAbierta] = useState(null);
 
   const cerrarSeccion = () => setSeccionAbierta(null);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans">
-      {/* Barra de Navegación Uniforme */}
+      {/* Barra de Navegación */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           
-          {/* Logo PERU MUSIC DJ */}
+          {/* Logo - Al hacer clic vuelve al inicio */}
           <div className="flex flex-col leading-none cursor-pointer" onClick={cerrarSeccion}>
             <h1 className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
               PERU <span className="text-red-600">MUSIC DJ</span>
@@ -23,7 +23,7 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Menú de Botones con lógica de ingreso */}
+          {/* Menú de Botones - Configurados para ACTIVAR la navegación */}
           <div className="hidden lg:flex space-x-3 text-[10px] font-black uppercase tracking-widest items-center">
             <button onClick={() => setSeccionAbierta('Librerías')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Librerías</button>
             <button onClick={() => setSeccionAbierta('Samples')} className="border-2 border-red-600 px-4 py-2 rounded-sm bg-black hover:bg-red-600 transition-all duration-300">Samples</button>
@@ -36,8 +36,9 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* LÓGICA DE VISUALIZACIÓN */}
       {!seccionAbierta ? (
-        /* PORTADA ORIGINAL INTACTA (Fondo de consola DJ) */
+        /* PORTADA (Solo se ve si no hay botón presionado) */
         <header 
           className="py-40 px-6 text-center bg-cover bg-center bg-no-repeat relative"
           style={{ backgroundImage: "url('/fondo.avif')" }}
@@ -57,11 +58,11 @@ export default function Home() {
           </p>
         </header>
       ) : (
-        /* CONTENIDO QUE APARECE AL INGRESAR (Botón Volver y Tarjetas) */
-        <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in duration-500">
+        /* VISTA DE SECCIÓN (Se ve cuando presionas un botón) */
+        <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in duration-300">
           <button 
             onClick={cerrarSeccion}
-            className="mb-10 text-zinc-500 hover:text-red-600 font-black uppercase tracking-[0.2em] text-xs transition-colors flex items-center gap-2"
+            className="mb-10 text-red-600 hover:text-white font-black uppercase tracking-widest text-sm flex items-center gap-2 border border-red-600 px-6 py-2 rounded-full transition-all"
           >
             ← VOLVER AL INICIO
           </button>
@@ -70,22 +71,20 @@ export default function Home() {
             {seccionAbierta}
           </h3>
 
-          {/* Tarjetas vacías con el estilo solicitado */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Tarjetas vacías con el estilo de DJ Ventu */}
             {[1, 2, 3].map((i) => (
               <div key={i} className="bg-[#0a0f1a] border border-zinc-900 p-6 rounded-[2rem] opacity-40">
                 <div className="aspect-square bg-zinc-950 rounded-3xl border border-zinc-900 mb-6 flex items-center justify-center">
-                  <span className="text-zinc-800 font-black uppercase tracking-widest text-xs">Espacio Reservado</span>
+                  <span className="text-zinc-800 font-black uppercase tracking-widest text-xs italic">Próximamente...</span>
                 </div>
-                <div className="h-2 w-full bg-zinc-900 rounded mb-2"></div>
-                <div className="h-2 w-1/2 bg-zinc-900 rounded"></div>
               </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* Footer Uniforme */}
+      {/* Footer */}
       <footer className="bg-black py-20 px-6 text-center border-t border-zinc-900 font-bold">
         <p className="text-zinc-700 text-[10px] uppercase tracking-[0.3em]">
           © 2026 PERU MUSIC DJ NETWORK - PUNO, PERÚ.
