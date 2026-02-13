@@ -30,8 +30,14 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <header className="py-32 px-6 text-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-black">
-        <div className="mb-6 inline-block">
+      <header 
+  className="py-40 px-6 text-center bg-cover bg-center bg-no-repeat relative"
+  style={{ backgroundImage: "url('/fondo.avif')" }}
+>
+  {/* Capa oscura para que el texto resalte */}
+  <div className="absolute inset-0 bg-black/70 z-0"></div>
+  
+  <div className="relative z-10">
           <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">
             PERU <br/> MUSIC DJ
           </h2>
