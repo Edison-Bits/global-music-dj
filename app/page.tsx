@@ -31,7 +31,14 @@ export default function Home() {
       subtitulo: "Edición Especial - Teclados y Ritmos",
       autor: "DJ ENZO VIP",
       portada: "/portada-sureno.png",
-      link: "https://drive.google.com/drive/folders/1erG_LvX_ml5DnTL7dIv-E3ZD-sItK2I1?usp=sharing" // LINK 2 ACTUALIZADO
+      link: "https://drive.google.com/drive/folders/1erG_LvX_ml5DnTL7dIv-E3ZD-sItK2I1?usp=sharing"
+    },
+    sureno1: {
+      titulo: "PACK SUREÑO I - 2026",
+      subtitulo: "Colección Original - Los Éxitos Clásicos",
+      autor: "DJ ENZO VIP",
+      portada: "/portada-sureno-1.png",
+      link: "https://drive.google.com/drive/folders/1pUZ9CiUj8VpYhwui4U9SHtFPMbVwb02j?usp=sharing" // NUEVO LINK AGREGADO
     }
   };
 
@@ -85,9 +92,9 @@ export default function Home() {
 
           {seccionAbierta === 'Pack' ? (
             !packAbierto ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
-                {/* TARJETA 1 */}
+                {/* PACK 1: CARNAVALES */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
                   <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">FREE GRATIS</div>
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
@@ -100,7 +107,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* TARJETA 2 */}
+                {/* PACK 2: ALAN WALKER */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
                     <img src="/portada-alan.png" alt="Alan Walker" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
@@ -112,10 +119,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* TARJETA 3 */}
+                {/* PACK 3: SUREÑO II */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-sureno.png" alt="Sureño" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                    <img src="/portada-sureno.png" alt="Sureño II" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="text-left px-1">
                     <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK SUREÑO II 2026</h4>
@@ -124,9 +131,21 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* PACK 4: SUREÑO I */}
+                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
+                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
+                    <img src="/portada-sureno-1.png" alt="Sureño I" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="text-left px-1">
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK SUREÑO I - 2026</h4>
+                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
+                    <button onClick={() => setPackAbierto('sureno1')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
+                  </div>
+                </div>
+
               </div>
             ) : (
-              /* VISTA DE DETALLE DINÁMICA */
+              /* DETALLE DINÁMICO */
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
                 <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">
                   ← VOLVER A LOS PACKS
