@@ -10,12 +10,33 @@ export default function Home() {
     setPackAbierto(null); 
   };
 
+  // DATOS EXACTOS DE LOS PACKS
+  const packs = {
+    ayacucho: {
+      titulo: "PACK CARNAVALES AYACUCHANOS 2026",
+      subtitulo: "Material Exclusivo de DJ VENTU",
+      portada: "/portada-ayacucho.jpg",
+      link: "https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing"
+    },
+    alan: {
+      titulo: "PACK STYLE ALAN WALKER 2026",
+      subtitulo: "Exclusive Edit - Electronic & Dance",
+      portada: "/portada-alan.jpg",
+      link: "#" 
+    },
+    sureno: {
+      titulo: "PACK SUREÑO II 2026",
+      subtitulo: "Edición Especial - Teclados y Ritmos",
+      portada: "/portada-sureno.jpg",
+      link: "#" 
+    }
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans overflow-x-hidden">
-      {/* NAVEGACIÓN 100% RESPONSIVE */}
+      {/* NAVEGACIÓN */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          
           <div className="flex flex-col leading-none cursor-pointer text-center md:text-left mb-4 md:mb-0" onClick={cerrarSeccion}>
             <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-white uppercase">
               PERU <span className="text-red-600">MUSIC DJ</span>
@@ -27,10 +48,7 @@ export default function Home() {
             {['Librerías', 'Samples', 'Efectos', 'Pack', 'Set DJ', 'Colecciones DJ', 'Backup'].map((item) => (
               <button 
                 key={item}
-                onClick={() => {
-                  setSeccionAbierta(item);
-                  setPackAbierto(null); 
-                }} 
+                onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
                 className="border border-red-600/70 px-3 py-2 rounded-lg bg-black hover:bg-red-600 hover:text-white transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg shadow-red-900/20 active:scale-95"
               >
                 {item}
@@ -41,10 +59,8 @@ export default function Home() {
       </nav>
 
       {!seccionAbierta ? (
-        /* PORTADA PRINCIPAL */
         <header className="py-32 md:py-40 px-4 text-center bg-cover bg-center bg-no-repeat relative flex flex-col justify-center min-h-[70vh]" style={{ backgroundImage: "url('/fondo.avif')" }}>
           <div className="absolute inset-0 bg-black/70 z-0"></div>
-          
           <div className="relative z-10 flex flex-col items-center">
             <h2 className="text-5xl sm:text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-4">PERU <br/> MUSIC DJ</h2>
             <p className="text-red-600 font-black tracking-[0.5em] md:text-2xl uppercase text-xs drop-shadow-[0_0_15px_rgba(220,38,38,1)] mb-2">exclusive</p>
@@ -55,7 +71,6 @@ export default function Home() {
         </header>
       ) : (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 animate-in fade-in duration-500">
-          
           {!packAbierto && (
             <>
               <button onClick={cerrarSeccion} className="mb-8 text-red-600 hover:text-white font-black uppercase text-xs border border-red-600 px-6 py-2 rounded-full transition-all active:bg-red-600">
@@ -68,65 +83,70 @@ export default function Home() {
           {seccionAbierta === 'Pack' ? (
             !packAbierto ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                
+                {/* AYACUCHO */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
-                  <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">
-                    FREE GRATIS
-                  </div>
-
+                  <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">FREE GRATIS</div>
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img 
-                      src="/portada-ayacucho.jpg" 
-                      alt="Portada DJ Ventu"
-                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
+                    <img src="/portada-ayacucho.jpg" alt="Ayacucho" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
-
                   <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
                     <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ VENTU</p>
-                    
-                    <button 
-                      onClick={() => setPackAbierto('ayacucho')}
-                      className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95"
-                    >
-                      ENTRAR Y VER PACK →
-                    </button>
+                    <button onClick={() => setPackAbierto('ayacucho')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
                   </div>
                 </div>
-                
-                {[1, 2].map((i) => (
-                  <div key={i} className="bg-[#0a0f1a] border border-zinc-900 p-6 rounded-[2rem] opacity-30 flex items-center justify-center aspect-square hidden md:flex">
-                    <span className="text-zinc-800 font-black uppercase text-[10px] tracking-widest">Próximamente...</span>
+
+                {/* ALAN WALKER 2026 */}
+                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
+                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
+                    <img src="/portada-alan.jpg" alt="Alan Walker" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
-                ))}
+                  <div className="text-left px-1">
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK STYLE ALAN WALKER 2026</h4>
+                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">EXCLUSIVE EDIT</p>
+                    <button onClick={() => setPackAbierto('alan')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
+                  </div>
+                </div>
+
+                {/* SUREÑO II 2026 */}
+                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
+                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
+                    <img src="/portada-sureno.jpg" alt="Sureño" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="text-left px-1">
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK SUREÑO II 2026</h4>
+                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">EDICIÓN LIMITADA</p>
+                    <button onClick={() => setPackAbierto('sureno')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
+                  </div>
+                </div>
+
               </div>
             ) : (
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
-                
-                <button 
-                  onClick={() => setPackAbierto(null)} 
-                  className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white"
-                >
+                <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">
                   ← VOLVER A LOS PACKS
                 </button>
 
                 <div className="w-full max-w-sm mx-auto mb-6 rounded-3xl overflow-hidden border border-zinc-800 bg-black shadow-2xl flex items-center justify-center">
                   <img 
-                    src="/portada-ayacucho.jpg" 
-                    alt="Portada DJ Ventu Detalle"
+                    src={packs[packAbierto as keyof typeof packs]?.portada} 
+                    alt="Portada Detalle" 
                     className="w-full h-auto object-contain"
                   />
                 </div>
 
                 <div className="text-center">
-                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
-                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">Material Exclusivo de DJ VENTU</p>
+                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">
+                    {packs[packAbierto as keyof typeof packs]?.titulo}
+                  </h4>
+                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">
+                    {packs[packAbierto as keyof typeof packs]?.subtitulo}
+                  </p>
                   
-                  {/* AQUÍ ESTÁ TU LINK DE DRIVE OFICIAL */}
                   <a 
-                    href="https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing" 
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={packs[packAbierto as keyof typeof packs]?.link} 
+                    target="_blank" rel="noopener noreferrer"
                     className="bg-[#1ed760] text-black font-black text-sm md:text-xl uppercase py-4 md:py-5 px-4 md:px-8 rounded-2xl flex md:inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_0_30px_rgba(30,215,96,0.3)] active:scale-95 w-full md:w-auto"
                   >
                     <span className="text-xl md:text-2xl">📥</span> DESCARGAR PACK AHORA
