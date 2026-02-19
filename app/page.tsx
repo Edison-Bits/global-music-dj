@@ -10,24 +10,27 @@ export default function Home() {
     setPackAbierto(null); 
   };
 
-  // DATOS EXACTOS DE LOS PACKS
+  // DATOS DE LOS PACKS
   const packs = {
     ayacucho: {
       titulo: "PACK CARNAVALES AYACUCHANOS 2026",
       subtitulo: "Material Exclusivo de DJ VENTU",
+      autor: "DJ VENTU",
       portada: "/portada-ayacucho.jpg",
       link: "https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing"
     },
     alan: {
       titulo: "PACK STYLE ALAN WALKER 2026",
       subtitulo: "Exclusive Edit - Electronic & Dance",
-      portada: "/portada-alan.jpg",
+      autor: "DJ ENZO VIP",
+      portada: "/portada-alan.png",
       link: "#" 
     },
     sureno: {
       titulo: "PACK SUREÑO II 2026",
       subtitulo: "Edición Especial - Teclados y Ritmos",
-      portada: "/portada-sureno.jpg",
+      autor: "DJ ENZO VIP",
+      portada: "/portada-sureno.png",
       link: "#" 
     }
   };
@@ -84,45 +87,46 @@ export default function Home() {
             !packAbierto ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 
-                {/* AYACUCHO */}
+                {/* TARJETA 1: CARNAVALES */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
                   <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">FREE GRATIS</div>
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
                     <img src="/portada-ayacucho.jpg" alt="Ayacucho" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
                     <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ VENTU</p>
                     <button onClick={() => setPackAbierto('ayacucho')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
                   </div>
                 </div>
 
-                {/* ALAN WALKER 2026 */}
+                {/* TARJETA 2: ALAN WALKER 2026 */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-alan.jpg" alt="Alan Walker" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                    <img src="/portada-alan.png" alt="Alan Walker" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK STYLE ALAN WALKER 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">EXCLUSIVE EDIT</p>
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK STYLE ALAN WALKER 2026</h4>
+                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
                     <button onClick={() => setPackAbierto('alan')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
                   </div>
                 </div>
 
-                {/* SUREÑO II 2026 */}
+                {/* TARJETA 3: SUREÑO II 2026 */}
                 <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
                   <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-sureno.jpg" alt="Sureño" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                    <img src="/portada-sureno.png" alt="Sureño" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight">PACK SUREÑO II 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">EDICIÓN LIMITADA</p>
+                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK SUREÑO II 2026</h4>
+                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
                     <button onClick={() => setPackAbierto('sureno')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
                   </div>
                 </div>
 
               </div>
             ) : (
+              /* VISTA DE DETALLE */
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
                 <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">
                   ← VOLVER A LOS PACKS
@@ -141,7 +145,7 @@ export default function Home() {
                     {packs[packAbierto as keyof typeof packs]?.titulo}
                   </h4>
                   <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">
-                    {packs[packAbierto as keyof typeof packs]?.subtitulo}
+                    Material de {packs[packAbierto as keyof typeof packs]?.autor}
                   </p>
                   
                   <a 
