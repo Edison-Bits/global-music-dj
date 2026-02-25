@@ -10,7 +10,7 @@ export default function Home() {
     setPackAbierto(null); 
   };
 
-  // DATOS DE LOS PACKS ACTUALIZADOS CON TODOS LOS LINKS
+  // DATOS DE LOS PACKS ACTUALIZADOS
   const packs = {
     ayacucho: {
       titulo: "PACK CARNAVALES AYACUCHANOS 2026",
@@ -38,7 +38,14 @@ export default function Home() {
       subtitulo: "Colección Original - Los Éxitos Clásicos",
       autor: "DJ ENZO VIP",
       portada: "/portada-sureno-1.png",
-      link: "https://drive.google.com/drive/folders/1pUZ9CiUj8VpYhwui4U9SHtFPMbVwb02j?usp=sharing" // NUEVO LINK AGREGADO
+      link: "https://drive.google.com/drive/folders/1pUZ9CiUj8VpYhwui4U9SHtFPMbVwb02j?usp=sharing"
+    },
+    genesis: {
+      titulo: "PACK DE GRUPO GENESIS - 2026",
+      subtitulo: "Edición Especial - Clásicos de Oro",
+      autor: "DJ ENZO VIP",
+      portada: "/portada-genesis.png",
+      link: "#" // Pendiente de tu link de Drive
     }
   };
 
@@ -94,54 +101,26 @@ export default function Home() {
             !packAbierto ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
-                {/* PACK 1: CARNAVALES */}
-                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-[#1ed760]/50 transition-all shadow-2xl overflow-hidden">
-                  <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">FREE GRATIS</div>
-                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-ayacucho.jpg" alt="Ayacucho" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                {/* RENDERIZADO DINÁMICO DE TODAS LAS TARJETAS */}
+                {Object.entries(packs).map(([key, pack]) => (
+                  <div key={key} className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
+                    {key === 'ayacucho' && (
+                      <div className="absolute top-4 left-4 bg-[#1ed760] text-black text-[10px] font-black px-3 py-1 rounded-lg z-20 shadow-[0_0_15px_rgba(30,215,96,0.4)]">
+                        FREE GRATIS
+                      </div>
+                    )}
+                    <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
+                      <img src={pack.portada} alt={pack.titulo} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                    </div>
+                    <div className="text-left px-1">
+                      <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">{pack.titulo}</h4>
+                      <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">{pack.autor}</p>
+                      <button onClick={() => setPackAbierto(key)} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">
+                        ENTRAR Y VER PACK →
+                      </button>
+                    </div>
                   </div>
-                  <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK CARNAVALES AYACUCHANOS 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ VENTU</p>
-                    <button onClick={() => setPackAbierto('ayacucho')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
-                  </div>
-                </div>
-
-                {/* PACK 2: ALAN WALKER */}
-                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
-                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-alan.png" alt="Alan Walker" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK STYLE ALAN WALKER 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
-                    <button onClick={() => setPackAbierto('alan')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
-                  </div>
-                </div>
-
-                {/* PACK 3: SUREÑO II */}
-                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
-                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-sureno.png" alt="Sureño II" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK SUREÑO II 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
-                    <button onClick={() => setPackAbierto('sureno')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
-                  </div>
-                </div>
-
-                {/* PACK 4: SUREÑO I */}
-                <div className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
-                  <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                    <img src="/portada-sureno-1.png" alt="Sureño I" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="text-left px-1">
-                    <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">PACK SUREÑO I - 2026</h4>
-                    <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">DJ ENZO VIP</p>
-                    <button onClick={() => setPackAbierto('sureno1')} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
-                  </div>
-                </div>
+                ))}
 
               </div>
             ) : (
