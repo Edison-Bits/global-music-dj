@@ -39,7 +39,17 @@ export default function Home() {
       titulo: "PACK DE GRUPO GENESIS",
       autor: "DJ ENZO VIP",
       portada: "/portada-genesis.png",
-      link: "https://drive.google.com/drive/folders/1fGKZH_COilJrVwERBv1OyJTj7268zp8s?usp=sharing" // LINK ACTUALIZADO
+      link: "https://drive.google.com/drive/folders/1fGKZH_COilJrVwERBv1OyJTj7268zp8s?usp=sharing"
+    }
+  };
+
+  // DATOS PARA LA SECCIÓN BACKUP
+  const backups = {
+    willy: {
+      titulo: "BACKUP DJ WILLY CUSCO",
+      autor: "DJ WILLY CUSCO",
+      portada: "/portada-willy.png", // Nombre que debes ponerle a tu imagen en public
+      link: "#" // Para que le pongas el link luego
     }
   };
 
@@ -80,33 +90,35 @@ export default function Home() {
             </>
           )}
 
-          {seccionAbierta === 'Pack' ? (
+          {/* LÓGICA PARA PACKS Y BACKUPS */}
+          {(seccionAbierta === 'Pack' || seccionAbierta === 'Backup') ? (
             !packAbierto ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {Object.entries(packs).map(([key, pack]) => (
+                {Object.entries(seccionAbierta === 'Pack' ? packs : backups).map(([key, item]) => (
                   <div key={key} className="bg-[#0a0f1a] border border-zinc-800 p-5 md:p-6 rounded-[2rem] relative group hover:border-red-600/50 transition-all shadow-2xl overflow-hidden">
                     <div className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800 relative flex items-center justify-center bg-black">
-                      <img src={pack.portada} alt={pack.titulo} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
+                      <img src={item.portada} alt={item.titulo} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <div className="text-left px-1">
-                      <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">{pack.titulo}</h4>
-                      <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">{pack.autor}</p>
-                      <button onClick={() => setPackAbierto(key)} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">ENTRAR Y VER PACK →</button>
+                      <h4 className="text-white font-black text-base md:text-lg mb-1 uppercase tracking-tight leading-tight">{item.titulo}</h4>
+                      <p className="text-zinc-500 text-[10px] font-bold mb-4 uppercase">{item.autor}</p>
+                      <button onClick={() => setPackAbierto(key)} className="w-full bg-red-600 text-white font-black text-xs uppercase py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-red-700 transition-all shadow-lg active:scale-95">VER CONTENIDO →</button>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
+              /* DETALLE DINÁMICO */
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
-                <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">← VOLVER A LOS PACKS</button>
+                <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">← VOLVER</button>
                 <div className="w-full max-w-sm mx-auto mb-6 rounded-3xl overflow-hidden border border-zinc-800 bg-black shadow-2xl flex items-center justify-center">
-                  <img src={packs[packAbierto as keyof typeof packs]?.portada} alt="Portada" className="w-full h-auto object-contain" />
+                  <img src={(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.portada} alt="Portada" className="w-full h-auto object-contain" />
                 </div>
                 <div className="text-center">
-                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">{packs[packAbierto as keyof typeof packs]?.titulo}</h4>
-                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">Material de {packs[packAbierto as keyof typeof packs]?.autor}</p>
-                  <a href={packs[packAbierto as keyof typeof packs]?.link} target="_blank" rel="noopener noreferrer" className="bg-[#1ed760] text-black font-black text-sm md:text-xl uppercase py-4 md:py-5 px-4 md:px-8 rounded-2xl flex md:inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-lg active:scale-95 w-full md:w-auto">
-                    📥 DESCARGAR PACK AHORA
+                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">{(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.titulo}</h4>
+                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">Material de {(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.autor}</p>
+                  <a href={(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.link} target="_blank" rel="noopener noreferrer" className="bg-[#1ed760] text-black font-black text-sm md:text-xl uppercase py-4 md:py-5 px-4 md:px-8 rounded-2xl flex md:inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-lg active:scale-95 w-full md:w-auto">
+                    📥 DESCARGAR AHORA
                   </a>
                 </div>
               </div>
