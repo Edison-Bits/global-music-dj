@@ -1,7 +1,7 @@
 "use client"; 
 import { useState } from 'react';
 
-// Definimos los tipos para evitar errores de TypeScript (el número 4)
+// Definimos los tipos para evitar errores de TypeScript
 type ItemData = {
   titulo: string;
   autor: string;
@@ -27,7 +27,8 @@ export default function Home() {
   };
 
   const backups: Record<string, ItemData> = {
-    willy: { titulo: "BACKUP DJ WILLY CUSCO", autor: "DJ WILLY CUSCO", portada: "/portada-willy.png", link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link" }
+    willy: { titulo: "BACKUP DJ WILLY CUSCO", autor: "DJ WILLY CUSCO", portada: "/portada-willy.png", link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link" },
+    gonz: { titulo: "BACKUP DJ GONZ", autor: "DJ GONZ", portada: "/portada-gonz.png", link: "https://drive.google.com/drive/folders/1nife5YbCQ_0o11msd9pDOrtHvVxbRvB9?usp=drive_link" }
   };
 
   const obtenerContenido = () => {
@@ -48,7 +49,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center md:justify-end gap-2 w-full md:w-auto text-[10px] font-black uppercase tracking-widest">
             {['Librerías', 'Samples', 'Efectos', 'Pack', 'Set DJ', 'Colecciones DJ', 'Backup'].map((item) => (
-              <button key={item} onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} className={`border border-red-600/70 px-3 py-2 rounded-lg bg-black hover:bg-red-600 hover:text-white transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg active:scale-95 ${seccionAbierta === item ? 'bg-red-600' : ''}`}>{item}</button>
+              <button key={item} onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} className={`border border-red-600/70 px-3 py-2 rounded-lg bg-black hover:bg-red-600 hover:text-white transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg active:scale-95 ${seccionAbierta === item ? 'bg-red-600 text-white' : ''}`}>{item}</button>
             ))}
           </div>
         </div>
