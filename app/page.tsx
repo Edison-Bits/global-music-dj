@@ -36,10 +36,10 @@ export default function Home() {
       link: "https://drive.google.com/drive/folders/1pUZ9CiUj8VpYhwui4U9SHtFPMbVwb02j?usp=sharing"
     },
     genesis: {
-      titulo: "PACK DE GRUPO GENESIS", // Título simplificado como pediste
+      titulo: "PACK DE GRUPO GENESIS",
       autor: "DJ ENZO VIP",
       portada: "/portada-genesis.png",
-      link: "#" 
+      link: "https://drive.google.com/drive/folders/1fGKZH_COilJrVwERBv1OyJTj7268zp8s?usp=sharing" // LINK ACTUALIZADO
     }
   };
 
