@@ -10,6 +10,7 @@ export default function Home() {
     setPackAbierto(null); 
   };
 
+  // DATOS DE LOS PACKS
   const packs = {
     ayacucho: {
       titulo: "PACK CARNAVALES AYACUCHANOS 2026",
@@ -43,18 +44,19 @@ export default function Home() {
     }
   };
 
-  // DATOS PARA LA SECCIÓN BACKUP
+  // DATOS DE BACKUP
   const backups = {
     willy: {
       titulo: "BACKUP DJ WILLY CUSCO",
       autor: "DJ WILLY CUSCO",
-      portada: "/portada-willy.png", // Nombre que debes ponerle a tu imagen en public
-      link: "#" // Para que le pongas el link luego
+      portada: "/portada-willy.png",
+      link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link"
     }
   };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans overflow-x-hidden">
+      {/* NAVEGACIÓN */}
       <nav className="p-4 bg-black/95 backdrop-blur-md border-b border-red-900/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col leading-none cursor-pointer text-center md:text-left mb-4 md:mb-0" onClick={cerrarSeccion}>
@@ -65,7 +67,11 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center md:justify-end gap-2 w-full md:w-auto text-[10px] font-black uppercase tracking-widest">
             {['Librerías', 'Samples', 'Efectos', 'Pack', 'Set DJ', 'Colecciones DJ', 'Backup'].map((item) => (
-              <button key={item} onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} className="border border-red-600/70 px-3 py-2 rounded-lg bg-black hover:bg-red-600 hover:text-white transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg shadow-red-900/20 active:scale-95">
+              <button 
+                key={item} 
+                onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
+                className="border border-red-600/70 px-3 py-2 rounded-lg bg-black hover:bg-red-600 hover:text-white transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg shadow-red-900/20 active:scale-95"
+              >
                 {item}
               </button>
             ))}
@@ -85,12 +91,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 animate-in fade-in duration-500">
           {!packAbierto && (
             <>
-              <button onClick={cerrarSeccion} className="mb-8 text-red-600 hover:text-white font-black uppercase text-xs border border-red-600 px-6 py-2 rounded-full transition-all active:bg-red-600">← VOLVER</button>
+              <button onClick={cerrarSeccion} className="mb-8 text-red-600 hover:text-white font-black uppercase text-xs border border-red-600 px-6 py-2 rounded-full transition-all active:bg-red-600">
+                ← VOLVER
+              </button>
               <h3 className="text-3xl md:text-5xl font-black uppercase mb-8 md:mb-12 text-white border-l-4 border-red-600 pl-4">{seccionAbierta}</h3>
             </>
           )}
 
-          {/* LÓGICA PARA PACKS Y BACKUPS */}
           {(seccionAbierta === 'Pack' || seccionAbierta === 'Backup') ? (
             !packAbierto ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -108,15 +115,20 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              /* DETALLE DINÁMICO */
               <div className="max-w-3xl mx-auto bg-[#0a0f1a] border border-zinc-800 p-6 md:p-12 rounded-[2rem] shadow-2xl animate-in zoom-in duration-300">
-                <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">← VOLVER</button>
+                <button onClick={() => setPackAbierto(null)} className="mb-6 text-zinc-500 hover:text-red-600 font-black uppercase text-xs flex items-center gap-2 transition-colors active:text-white">
+                  ← VOLVER
+                </button>
                 <div className="w-full max-w-sm mx-auto mb-6 rounded-3xl overflow-hidden border border-zinc-800 bg-black shadow-2xl flex items-center justify-center">
                   <img src={(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.portada} alt="Portada" className="w-full h-auto object-contain" />
                 </div>
                 <div className="text-center">
-                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">{(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.titulo}</h4>
-                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">Material de {(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.autor}</p>
+                  <h4 className="text-white font-black text-2xl md:text-3xl mb-2 uppercase tracking-tight">
+                    {(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.titulo}
+                  </h4>
+                  <p className="text-zinc-400 text-xs font-bold mb-6 uppercase tracking-widest">
+                    Material de {(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.autor}
+                  </p>
                   <a href={(seccionAbierta === 'Pack' ? packs : backups)[packAbierto as keyof typeof packs]?.link} target="_blank" rel="noopener noreferrer" className="bg-[#1ed760] text-black font-black text-sm md:text-xl uppercase py-4 md:py-5 px-4 md:px-8 rounded-2xl flex md:inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-lg active:scale-95 w-full md:w-auto">
                     📥 DESCARGAR AHORA
                   </a>
