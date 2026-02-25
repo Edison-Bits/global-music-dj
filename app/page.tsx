@@ -31,9 +31,20 @@ export default function Home() {
     gonz: { titulo: "BACKUP DJ GONZ", autor: "DJ GONZ", portada: "/portada-gonz.png", link: "https://drive.google.com/drive/folders/1nife5YbCQ_0o11msd9pDOrtHvVxbRvB9?usp=drive_link" }
   };
 
+  // NUEVA SECCIÓN: COLECCIONES DJ
+  const colecciones: Record<string, ItemData> = {
+    elmer: { 
+      titulo: "COLECCION DE ELMER MIX 2025 VOL 01 - 07", 
+      autor: "ELMER MIX", 
+      portada: "/portada-elmer.png", 
+      link: "#" // Pega aquí el link cuando lo tengas
+    }
+  };
+
   const obtenerContenido = () => {
     if (seccionAbierta === 'Pack') return packs;
     if (seccionAbierta === 'Backup') return backups;
+    if (seccionAbierta === 'Colecciones DJ') return colecciones; // Activamos la sección
     return null;
   };
 
@@ -94,7 +105,7 @@ export default function Home() {
                 </div>
               )
             ) : (
-              <div className="py-20 text-center opacity-30"><span className="text-xl font-black uppercase tracking-widest">PRÓXIMAMENTE...</span></div>
+              <div className="py-20 text-center opacity-30"><span className="text-xl font-black uppercase tracking-widest">PRÓXIMAMENTE EN {seccionAbierta.toUpperCase()}...</span></div>
             )}
           </>
         )}
