@@ -8,6 +8,12 @@ type ItemData = {
   link: string;
 };
 
+type Comentario = {
+  nombre: string;
+  texto: string;
+  fecha: string;
+};
+
 type SeccionesValidas = 'Librerías' | 'Samples' | 'Efectos' | 'Pack' | 'Set DJ' | 'Colecciones DJ' | 'Backup';
 
 const packs: Record<string, ItemData> = {
@@ -33,6 +39,11 @@ const SECCIONES: SeccionesValidas[] = ['Librerías', 'Samples', 'Efectos', 'Pack
 export default function Home() {
   const [seccionAbierta, setSeccionAbierta] = useState<SeccionesValidas | null>(null);
   const [packAbierto, setPackAbierto] = useState<string | null>(null);
+  
+  // Estado para manejar los comentarios por cada pack
+  const [comentarios, setComentarios] = useState<Record<string, Comentario[]>>({});
+  const [nuevoNombre, setNuevoNombre] = useState('');
+  const [nuevoComentario, setNuevoComentario] = useState('');
 
   const cerrarSeccion = () => {
     setSeccionAbierta(null);
@@ -48,40 +59,55 @@ export default function Home() {
     }
   };
 
+  const manejarEnvioComentario = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nuevoNombre.trim() || !nuevoComentario.trim() || !packAbierto) return;
+
+    const comentarioData: Comentario = {
+      nombre: nuevoNombre,
+      texto: nuevoComentario,
+      fecha: new Date().toLocaleDateString()
+    };
+
+    setComentarios(prev => ({
+      ...prev,
+      [packAbierto]: [...(prev[packAbierto] || []), comentarioData]
+    }));
+
+    setNuevoNombre('');
+    setNuevoComentario('');
+  };
+
   const contenidoActual = obtenerContenido();
   const itemSeleccionado = packAbierto && contenidoActual ? contenidoActual[packAbierto] : null;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden flex flex-col selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen bg-[#09090b] text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-red-600/30 selection:text-red-200">
       
-      {/* NAVEGACIÓN SEMÁNTICA CON GLASSMORPHISM MEJORADO */}
-      <nav className="p-4 bg-black/70 backdrop-blur-xl border-b border-red-900/30 sticky top-0 z-50 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-300">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5">
-          
-          {/* Logo animado */}
+      {/* NAVBAR PREMIUM */}
+      <nav className="px-6 py-4 bg-[#09090b]/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
           <button 
             onClick={cerrarSeccion}
-            className="flex flex-col items-center md:items-start text-left focus:outline-none group active:scale-95 transition-transform duration-300"
-            aria-label="Volver al inicio"
+            className="flex flex-col items-center lg:items-start text-left focus:outline-none group transition-transform duration-300"
           >
-            <h1 className="text-2xl md:text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 group-hover:from-white group-hover:to-white transition-all duration-500 uppercase">
-              PERU <span className="text-red-600 group-hover:text-red-500 drop-shadow-[0_0_8px_rgba(220,38,38,0.5)]">MUSIC DJ</span>
+            <h1 className="text-2xl font-black tracking-tight text-white uppercase flex items-center gap-2">
+              PERU <span className="text-red-600">MUSIC DJ</span>
             </h1>
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-zinc-500 font-bold ml-1 group-hover:text-zinc-400 transition-colors">
-              exclusive
+            <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-medium">
+              Premium Network
             </span>
           </button>
 
-          {/* Botones de menú con glow y feedback táctil */}
-          <div className="flex flex-wrap justify-center md:justify-end gap-2 w-full md:w-auto text-[10px] md:text-xs font-black uppercase tracking-widest">
+          <div className="flex flex-wrap justify-center gap-2 w-full lg:w-auto text-[11px] font-semibold uppercase tracking-wider">
             {SECCIONES.map((item) => (
               <button 
                 key={item} 
                 onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
-                className={`border px-4 py-2.5 rounded-xl transition-all duration-300 flex-grow md:flex-grow-0 text-center shadow-lg active:scale-90 focus:outline-none touch-manipulation
+                className={`px-4 py-2 rounded-full transition-all duration-300 flex-grow sm:flex-grow-0 text-center border focus:outline-none
                   ${seccionAbierta === item 
-                    ? 'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.4)]' 
-                    : 'bg-[#0a0f1a] text-zinc-400 border-zinc-800 hover:border-red-600/50 hover:text-white hover:bg-zinc-900 hover:shadow-[0_0_10px_rgba(220,38,38,0.2)]'
+                    ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]' 
+                    : 'bg-transparent text-zinc-400 border-white/10 hover:border-white/30 hover:text-white hover:bg-white/5'
                   }`}
               >
                 {item}
@@ -91,167 +117,215 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* CONTENIDO PRINCIPAL */}
-      <main className="max-w-6xl mx-auto px-4 py-12 flex-grow w-full relative">
+      <main className="max-w-7xl mx-auto w-full flex-grow relative pb-20">
         
-        {/* Fondo decorativo sutil (luces) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-red-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
-
-        {/* ESTADO 1: PANTALLA DE INICIO CON IMAGEN DE FONDO Y ANIMACIÓN */}
+        {/* ESTADO 1: PORTADA PROFESIONAL */}
         {!seccionAbierta && (
-          <header 
-            className="relative py-32 md:py-48 text-center transition-all duration-700 ease-out transform translate-y-0 opacity-100 flex flex-col justify-center items-center rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.15)] border border-zinc-800/50"
-            style={{ 
-              backgroundImage: "url('/bg-principal.png')", /* Cambiado a .png */
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          >
-            {/* Capa oscura translúcida para que resalten las letras */}
-            <div className="absolute inset-0 bg-black/70 z-0 group-hover:bg-black/50 transition-colors duration-500"></div>
+          <div className="px-4 py-8 lg:py-16 animate-fade-in-up">
+            <header 
+              className="relative w-full h-[60vh] lg:h-[75vh] min-h-[500px] flex flex-col justify-center items-center rounded-3xl lg:rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl"
+              style={{ 
+                backgroundImage: "url('/bg-principal.png')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              {/* Capa oscura sofisticada */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/60 to-transparent z-0"></div>
+              <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-            {/* Contenedor del texto (z-10 para que quede encima del fondo) */}
-            <div className="relative z-10">
-              <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 drop-shadow-2xl">
-                PERU <br/> 
-                <span className="text-white relative inline-block">
-                  MUSIC DJ
-                  {/* Brillo detrás del texto principal */}
-                  <span className="absolute -inset-4 bg-red-600/30 blur-2xl -z-10 animate-pulse rounded-full"></span>
+              <div className="relative z-10 text-center px-4 flex flex-col items-center">
+                <span className="px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
+                  Plataforma Exclusiva
                 </span>
-              </h2>
-              <p className="text-red-500 font-black tracking-[0.5em] md:text-2xl uppercase text-xs animate-pulse drop-shadow-lg">
-                exclusive
-              </p>
-            </div>
-          </header>
+                <h2 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.9] text-white drop-shadow-2xl">
+                  PERU <br/> 
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">MUSIC DJ</span>
+                </h2>
+                <p className="mt-6 text-zinc-300 max-w-lg mx-auto text-sm md:text-base font-light tracking-wide">
+                  Descarga las mejores librerías, samples y packs de la red. Calidad de estudio para DJs profesionales.
+                </p>
+              </div>
+            </header>
+          </div>
         )}
 
         {/* ESTADO 2: SECCIÓN ABIERTA */}
         {seccionAbierta && (
-          <section className="transition-all duration-500 animate-fade-in-up">
+          <section className="px-4 py-12 transition-all duration-500 animate-fade-in-up">
             
             {!packAbierto && (
-              <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-l-4 border-red-600 pl-5">
-                <h3 className="text-4xl md:text-5xl font-black uppercase text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.1)]">
-                  {seccionAbierta}
-                </h3>
+              <div className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-white/10 pb-6">
+                <div>
+                  <h3 className="text-3xl lg:text-5xl font-black uppercase text-white tracking-tight">
+                    {seccionAbierta}
+                  </h3>
+                  <p className="text-zinc-500 text-sm mt-2">Explora nuestro catálogo disponible.</p>
+                </div>
                 <button 
                   onClick={cerrarSeccion} 
-                  className="text-red-500 hover:text-white hover:bg-red-600 hover:shadow-[0_0_15px_rgba(220,38,38,0.4)] font-black uppercase text-xs border border-red-600/50 px-6 py-3 rounded-full transition-all duration-300 self-start md:self-auto active:scale-90"
+                  className="text-zinc-400 hover:text-white font-semibold text-sm flex items-center gap-2 transition-colors group"
                 >
-                  ← VOLVER
+                  <span className="group-hover:-translate-x-1 transition-transform">←</span> Volver al Inicio
                 </button>
               </div>
             )}
 
             {!contenidoActual ? (
-              <div className="py-24 text-center opacity-40">
-                <span className="text-xl md:text-2xl font-black uppercase tracking-widest text-zinc-500 animate-pulse">
-                  PRÓXIMAMENTE EN {seccionAbierta.toUpperCase()}...
-                </span>
+              <div className="py-32 text-center flex flex-col items-center justify-center border border-dashed border-white/10 rounded-3xl bg-white/[0.02]">
+                <span className="text-xl font-medium text-zinc-500">Contenido en desarrollo</span>
+                <p className="text-zinc-600 text-sm mt-2">Próximamente disponible en {seccionAbierta}</p>
               </div>
             ) : !packAbierto ? (
               
-              /* GRID DE TARJETAS (Packs) CON EFECTOS DE HOVER */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              /* GRID DE TARJETAS PREMIUM */
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
                 {Object.entries(contenidoActual).map(([key, item]) => (
                   <article 
                     key={key} 
-                    className="bg-[#0a0f1a]/80 backdrop-blur-sm border border-zinc-800/80 p-6 rounded-[2rem] flex flex-col group hover:border-red-500/50 hover:bg-[#0c1322] transition-all duration-500 shadow-xl hover:shadow-[0_10px_40px_-10px_rgba(220,38,38,0.3)] hover:-translate-y-2 overflow-hidden"
+                    className="bg-[#121214] border border-white/5 p-5 rounded-3xl flex flex-col group hover:border-red-500/30 hover:bg-[#18181b] transition-all duration-300 shadow-lg cursor-pointer"
+                    onClick={() => setPackAbierto(key)}
                   >
-                    <figure className="aspect-square w-full mb-6 overflow-hidden rounded-3xl border border-zinc-800/50 bg-[#050505] flex items-center justify-center relative">
-                      {/* Overlay oscuro que desaparece al pasar el mouse */}
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <figure className="aspect-[4/3] w-full mb-5 overflow-hidden rounded-2xl bg-black relative">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img 
                         src={item.portada} 
                         alt={`Portada de ${item.titulo}`} 
-                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 relative z-0" 
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
                         loading="lazy"
                       />
                     </figure>
-                    <div className="flex-grow flex flex-col justify-end">
-                      <h4 className="text-white font-black text-lg mb-1 uppercase leading-tight line-clamp-2 group-hover:text-red-400 transition-colors duration-300">
-                        {item.titulo}
-                      </h4>
-                      <p className="text-zinc-500 text-[10px] font-bold mb-5 uppercase tracking-wider">
-                        {item.autor}
-                      </p>
-                      <button 
-                        onClick={() => setPackAbierto(key)} 
-                        className="w-full bg-zinc-900 border border-zinc-700 text-white font-black text-xs uppercase py-4 rounded-xl group-hover:bg-red-600 group-hover:border-red-500 transition-all duration-300 shadow-lg active:scale-95 touch-manipulation"
-                      >
-                        VER CONTENIDO →
-                      </button>
+                    <div className="flex-grow flex flex-col justify-between">
+                      <div>
+                        <span className="text-red-500 text-[10px] font-bold uppercase tracking-wider mb-2 block">
+                          {item.autor}
+                        </span>
+                        <h4 className="text-white font-bold text-lg leading-snug line-clamp-2 mb-4 group-hover:text-red-400 transition-colors">
+                          {item.titulo}
+                        </h4>
+                      </div>
+                      <div className="flex items-center text-xs font-semibold text-zinc-400 uppercase tracking-widest group-hover:text-white transition-colors">
+                        Ver Detalles <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
               
-              /* DETALLE DEL PACK CON ANIMACIÓN Y BOTÓN NEÓN */
+              /* VISTA DE DETALLE DEL PACK + COMENTARIOS */
               itemSeleccionado && (
-                <article className="max-w-2xl mx-auto bg-gradient-to-b from-[#0f1626] to-[#05080f] border border-zinc-800/80 p-8 md:p-12 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-center relative overflow-hidden animate-fade-in-up">
-                  {/* Luz de fondo en el detalle */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-red-600/10 blur-3xl rounded-full pointer-events-none"></div>
-
+                <div className="max-w-4xl mx-auto animate-fade-in-up">
                   <button 
                     onClick={() => setPackAbierto(null)} 
-                    className="mb-8 text-zinc-500 hover:text-white font-black uppercase text-xs flex items-center gap-2 transition-colors focus:outline-none mx-auto lg:mx-0 active:scale-90"
+                    className="mb-8 text-zinc-400 hover:text-white font-medium text-sm flex items-center gap-2 transition-colors group"
                   >
-                    <span className="text-red-600 text-lg leading-none">←</span> VOLVER A {seccionAbierta.toUpperCase()}
+                    <span className="group-hover:-translate-x-1 transition-transform">←</span> Regresar a {seccionAbierta}
                   </button>
 
-                  <figure className="flex justify-center mb-8 relative group">
-                    <div className="absolute inset-0 bg-red-600/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src={itemSeleccionado.portada} 
-                      alt={`Portada de ${itemSeleccionado.titulo}`}
-                      className="w-full max-w-[280px] md:max-w-xs rounded-3xl shadow-2xl border border-zinc-700/50 transform group-hover:scale-105 transition-transform duration-500 relative z-10" 
-                    />
-                  </figure>
+                  <div className="bg-[#121214] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                    <div className="p-8 lg:p-12 flex flex-col md:flex-row gap-10 items-center md:items-start">
+                      <figure className="w-full max-w-[250px] shrink-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={itemSeleccionado.portada} 
+                          alt={`Portada de ${itemSeleccionado.titulo}`}
+                          className="w-full rounded-2xl shadow-xl border border-white/10" 
+                        />
+                      </figure>
 
-                  <h4 className="text-white font-black text-3xl md:text-4xl mb-3 uppercase drop-shadow-md">
-                    {itemSeleccionado.titulo}
-                  </h4>
-                  <p className="text-zinc-400 text-xs md:text-sm font-bold mb-10 uppercase tracking-[0.2em]">
-                    Material exclusivo de <span className="text-white">{itemSeleccionado.autor}</span>
-                  </p>
+                      <div className="flex-grow text-center md:text-left">
+                        <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[10px] font-bold uppercase tracking-wider mb-4">
+                          Autor: {itemSeleccionado.autor}
+                        </span>
+                        <h4 className="text-white font-black text-3xl lg:text-4xl leading-tight mb-6">
+                          {itemSeleccionado.titulo}
+                        </h4>
+                        
+                        <a 
+                          href={itemSeleccionado.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 font-bold text-sm lg:text-base uppercase py-4 px-8 rounded-xl gap-3 transition-colors w-full sm:w-auto"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                          Descargar Archivo
+                        </a>
+                      </div>
+                    </div>
 
-                  {/* Botón de Descarga Efecto Neón Spotify/Walker */}
-                  <a 
-                    href={itemSeleccionado.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="relative inline-flex items-center justify-center bg-[#1ed760] text-black font-black text-lg md:text-xl uppercase py-5 px-10 rounded-2xl gap-3 hover:brightness-110 active:scale-95 transition-all duration-300 shadow-[0_0_20px_rgba(30,215,96,0.4)] hover:shadow-[0_0_30px_rgba(30,215,96,0.6)] w-full sm:w-auto touch-manipulation group"
-                  >
-                    <span className="group-hover:-translate-y-1 transition-transform duration-300 text-2xl">📥</span> 
-                    DESCARGAR AHORA
-                  </a>
-                </article>
+                    {/* SECCIÓN DE COMENTARIOS */}
+                    <div className="border-t border-white/5 bg-[#0e0e11] p-8 lg:p-12">
+                      <h5 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                        Comentarios ({comentarios[packAbierto]?.length || 0})
+                      </h5>
+
+                      {/* Lista de comentarios */}
+                      <div className="space-y-4 mb-8">
+                        {(!comentarios[packAbierto] || comentarios[packAbierto].length === 0) ? (
+                          <p className="text-zinc-500 text-sm italic">Sé el primero en comentar sobre este pack.</p>
+                        ) : (
+                          comentarios[packAbierto].map((comentario, index) => (
+                            <div key={index} className="bg-white/5 border border-white/5 p-4 rounded-xl">
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="font-bold text-sm text-white">{comentario.nombre}</span>
+                                <span className="text-[10px] text-zinc-500">{comentario.fecha}</span>
+                              </div>
+                              <p className="text-zinc-300 text-sm">{comentario.texto}</p>
+                            </div>
+                          ))
+                        )}
+                      </div>
+
+                      {/* Formulario para comentar */}
+                      <form onSubmit={manejarEnvioComentario} className="flex flex-col gap-3">
+                        <input 
+                          type="text" 
+                          placeholder="Tu nombre..." 
+                          value={nuevoNombre}
+                          onChange={(e) => setNuevoNombre(e.target.value)}
+                          className="bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors"
+                          required
+                        />
+                        <textarea 
+                          placeholder="¿Qué te pareció este material?" 
+                          value={nuevoComentario}
+                          onChange={(e) => setNuevoComentario(e.target.value)}
+                          rows={3}
+                          className="bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors resize-none"
+                          required
+                        ></textarea>
+                        <button 
+                          type="submit" 
+                          className="self-end bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors"
+                        >
+                          Publicar Comentario
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               )
             )}
           </section>
         )}
       </main>
 
-      {/* FOOTER MEJORADO */}
-      <footer className="py-12 text-center border-t border-zinc-900 bg-black mt-auto relative z-10">
-        <p className="text-zinc-600 text-[10px] uppercase font-bold tracking-[0.3em] hover:text-zinc-400 transition-colors">
-          © 2026 PERU MUSIC DJ NETWORK | PUNO, PERÚ.
+      {/* FOOTER MINIMALISTA */}
+      <footer className="py-8 text-center border-t border-white/5 bg-[#09090b]">
+        <p className="text-zinc-600 text-[10px] uppercase font-bold tracking-widest">
+          © {new Date().getFullYear()} PERU MUSIC DJ | Ingeniería y Desarrollo.
         </p>
       </footer>
 
-      {/* Agregar esta clase al CSS global (globals.css) para que la animación funcione, o usa Tailwind estándar */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in-up {
-          animation: fadeInUp 0.5s ease-out forwards;
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}} />
     </div>
