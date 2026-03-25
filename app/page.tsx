@@ -97,20 +97,33 @@ export default function Home() {
         {/* Fondo decorativo sutil (luces) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-red-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
-        {/* ESTADO 1: PANTALLA DE INICIO CON ANIMACIÓN DE PULSO */}
+        {/* ESTADO 1: PANTALLA DE INICIO CON IMAGEN DE FONDO Y ANIMACIÓN */}
         {!seccionAbierta && (
-          <header className="py-24 md:py-32 text-center transition-all duration-700 ease-out transform translate-y-0 opacity-100">
-            <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 drop-shadow-2xl">
-              PERU <br/> 
-              <span className="text-white relative inline-block">
-                MUSIC DJ
-                {/* Brillo detrás del texto principal */}
-                <span className="absolute -inset-4 bg-red-600/20 blur-2xl -z-10 animate-pulse rounded-full"></span>
-              </span>
-            </h2>
-            <p className="text-red-500 font-black tracking-[0.5em] md:text-2xl uppercase text-xs animate-pulse">
-              exclusive
-            </p>
+          <header 
+            className="relative py-32 md:py-48 text-center transition-all duration-700 ease-out transform translate-y-0 opacity-100 flex flex-col justify-center items-center rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.15)] border border-zinc-800/50"
+            style={{ 
+              backgroundImage: "url('/bg-principal.png')", /* Cambiado a .png */
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            {/* Capa oscura translúcida para que resalten las letras */}
+            <div className="absolute inset-0 bg-black/70 z-0 group-hover:bg-black/50 transition-colors duration-500"></div>
+
+            {/* Contenedor del texto (z-10 para que quede encima del fondo) */}
+            <div className="relative z-10">
+              <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 drop-shadow-2xl">
+                PERU <br/> 
+                <span className="text-white relative inline-block">
+                  MUSIC DJ
+                  {/* Brillo detrás del texto principal */}
+                  <span className="absolute -inset-4 bg-red-600/30 blur-2xl -z-10 animate-pulse rounded-full"></span>
+                </span>
+              </h2>
+              <p className="text-red-500 font-black tracking-[0.5em] md:text-2xl uppercase text-xs animate-pulse drop-shadow-lg">
+                exclusive
+              </p>
+            </div>
           </header>
         )}
 
