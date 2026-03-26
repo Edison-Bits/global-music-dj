@@ -24,12 +24,17 @@ const packs: Record<string, ItemData> = {
   genesis: { titulo: "PACK DE GRUPO GENESIS", autor: "DJ ENZO VIP", portada: "/portada-genesis.png", link: "https://drive.google.com/drive/folders/1fGKZH_COilJrVwERBv1OyJTj7268zp8s?usp=sharing" }
 };
 
-// --- SECCIÓN BACKUPS CON DJ LOPEZ INCLUIDO ---
+// --- SECCIÓN BACKUPS CON DJ LOPEZ (EXTENSIÓN .PNG MAYÚSCULA) ---
 const backups: Record<string, ItemData> = {
   willy: { titulo: "BACKUP DJ WILLY CUSCO", autor: "DJ WILLY CUSCO", portada: "/portada-willy.png", link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link" },
   gonz: { titulo: "BACKUP DJ GONZ", autor: "DJ GONZ", portada: "/portada-gonz.png", link: "https://drive.google.com/drive/folders/1nife5YbCQ_0o11msd9pDOrtHvVxbRvB9?usp=drive_link" },
   ferty: { titulo: "MINI BACKUP DJ FERTY 2025", autor: "DJ FERTY", portada: "/portada-ferty.png", link: "https://drive.google.com/drive/folders/1pOzqJ8jjAuFbJxfVi5z9dleWMUcSdLvD?usp=drive_link" },
-  lopez: { titulo: "BACKUP DJ LOPEZ", autor: "DJ LOPEZ", portada: "/portada-lopez.png", link: "https://drive.google.com/drive/folders/TU_LINK_AQUI" }
+  lopez: { 
+    titulo: "BACKUP DJ LOPEZ", 
+    autor: "DJ LOPEZ", 
+    portada: "/portada-lopez.PNG", // Extension corregida a MAYÚSCULAS
+    link: "TU_LINK_AQUI" 
+  }
 };
 
 const colecciones: Record<string, ItemData> = {
