@@ -28,7 +28,6 @@ const backups: Record<string, ItemData> = {
   willy: { titulo: "BACKUP DJ WILLY CUSCO", autor: "DJ WILLY CUSCO", portada: "/portada-willy.png", link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link" },
   gonz: { titulo: "BACKUP DJ GONZ", autor: "DJ GONZ", portada: "/portada-gonz.png", link: "https://drive.google.com/drive/folders/1nife5YbCQ_0o11msd9pDOrtHvVxbRvB9?usp=drive_link" },
   ferty: { titulo: "MINI BACKUP DJ FERTY 2025", autor: "DJ FERTY", portada: "/portada-ferty.png", link: "https://drive.google.com/drive/folders/1pOzqJ8jjAuFbJxfVi5z9dleWMUcSdLvD?usp=drive_link" },
-  // ENLACE OFICIAL DE DJ LOPEZ ACTUALIZADO
   lopez: { titulo: "BACKUP DJ LOPEZ", autor: "DJ LOPEZ", portada: "/portada-lopez.png", link: "https://drive.google.com/drive/folders/1imMIi36BoKoQWkvNmmvTWnGjIUGr8c-H?usp=drive_link" } 
 };
 
@@ -97,18 +96,27 @@ export default function Home() {
             </h1>
           </button>
 
-          <div className="flex flex-wrap justify-center gap-3 w-full lg:w-auto text-[11px] font-bold uppercase tracking-widest">
+          {/* BOTONES COLORIDOS / DJ STYLE */}
+          <div className="flex flex-wrap justify-center gap-3 w-full lg:w-auto text-[11px] font-black uppercase tracking-widest">
             {SECCIONES.map((item) => (
               <button 
                 key={item} 
                 onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
-                className={`group relative px-5 py-2.5 rounded-full transition-all duration-300 flex-grow sm:flex-grow-0 text-center focus:outline-none overflow-hidden
+                className={`group relative px-6 py-3 rounded-xl transition-all duration-300 flex-grow sm:flex-grow-0 text-center focus:outline-none overflow-hidden border border-white/10
                   ${seccionAbierta === item 
-                    ? 'bg-red-600 text-white shadow-[0_0_25px_rgba(220,38,38,0.5)] border border-red-500' 
-                    : 'bg-[#0a0a0a] text-zinc-400 hover:text-white border border-white/[0.05] hover:border-red-500/50'
+                    ? 'text-white shadow-[0_0_30px_rgba(255,0,0,0.4)] scale-105' 
+                    : 'text-zinc-200 hover:text-white hover:border-white/40'
                   }`}
               >
-                <span className="relative z-10">{item}</span>
+                {/* FONDO COLORIDO ANIMADO (MESH GRADIENT) */}
+                <span className={`absolute inset-0 transition-opacity duration-500 bg-mesh-gradient animate-mesh-shift
+                  ${seccionAbierta === item ? 'opacity-100' : 'opacity-40 group-hover:opacity-80'}`}>
+                </span>
+                
+                {/* Capa de brillo superior */}
+                <span className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50"></span>
+                
+                <span className="relative z-10 drop-shadow-md">{item}</span>
               </button>
             ))}
           </div>
@@ -117,14 +125,14 @@ export default function Home() {
 
       <main className="w-full flex-grow relative pb-20">
         
-        {/* PORTADA */}
+        {/* PORTADA (SIN TOCAR FONDO NI TAMAÑO) */}
         {!seccionAbierta && (
           <div className="animate-fade-in">
             <header className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" style={{ backgroundImage: "url('/bg-principal.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
               <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/10 via-[#030303]/80 to-[#030303] z-0"></div>
               <div className="absolute inset-0 bg-black/40 z-0"></div>
               <div className="relative z-10 text-center px-4 flex flex-col items-center">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 text-red-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-md shadow-lg shadow-black/30">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-8 backdrop-blur-md shadow-lg shadow-black/30">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
@@ -147,7 +155,7 @@ export default function Home() {
                 <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-b border-white/[0.04] pb-10">
                     <div>
                     <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight">{seccionAbierta}</h3>
-                    <p className="text-zinc-500 text-base mt-3 max-w-md font-light">Explora nuestro catálogo para DJs.</p>
+                    <p className="text-zinc-500 text-base mt-3 max-w-md font-light">Explora nuestro catálogo para DJs profesionales.</p>
                     </div>
                     <button onClick={cerrarSeccion} className="text-zinc-500 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-colors group px-5 py-2.5 rounded-full border border-white/[0.03] hover:bg-[#0a0a0a]">
                     <span className="group-hover:-translate-x-1.5 transition-transform text-red-500">←</span> Inicio
@@ -155,6 +163,7 @@ export default function Home() {
                 </div>
                 )}
 
+                {/* TARJETAS (NO SE TOCARON COMO PEDISTE) */}
                 {contenidoActual && !packAbierto && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {Object.entries(contenidoActual).map(([key, item], index) => (
@@ -165,7 +174,6 @@ export default function Home() {
                         onClick={() => setPackAbierto(key)}
                     >
                         <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none bg-red-600/10"></div>
-                        
                         <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-[#030303] relative flex items-center justify-center p-3 border border-white/[0.02] shadow-inner">
                             <img src={item.portada} alt={item.titulo} className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110" />
                         </figure>
@@ -212,6 +220,18 @@ export default function Home() {
       </footer>
 
       <style dangerouslySetInnerHTML={{__html: `
+        @keyframes meshShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .bg-mesh-gradient {
+          background: linear-gradient(45deg, #ff0000, #9333ea, #06b6d4, #ff0000);
+          background-size: 300% 300%;
+        }
+        .animate-mesh-shift {
+          animation: meshShift 8s ease infinite;
+        }
         @keyframes cardEntry {
           from { opacity: 0; transform: translateY(30px) scale(0.95); }
           to { opacity: 1; transform: translateY(0) scale(1); }
