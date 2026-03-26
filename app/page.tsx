@@ -53,17 +53,22 @@ export default function Home() {
   const itemSeleccionado = packAbierto && contenidoActual ? contenidoActual[packAbierto] : null;
 
   return (
-    <div className="min-h-screen bg-[#070000] bg-power-red-pattern text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-red-600/60 selection:text-white">
+    /* NUEVO FONDO: El patrón de rojo se mantiene pero se debilita para dar paso al glow espectral */
+    <div className="min-h-screen bg-[#070000] bg-power-spectral-pattern text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-cyan-600/60 selection:text-white relative">
       
-      {/* NAVBAR */}
-      <nav className="px-6 py-4 bg-black/40 backdrop-blur-3xl border-b border-red-900/30 sticky top-0 z-50 transition-all duration-300">
-        <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
+      {/* GLOW DE FONDO AMBIENTAL: Una capa extra para aumentar la intensidad del color */}
+      <div className="fixed inset-0 z-0 opacity-20 bg-power-spectral-glow"></div>
+
+      {/* NAVBAR: El borde y los brillos ahora cambian de color */}
+      <nav className="px-6 py-4 bg-black/60 backdrop-blur-3xl border-b border-spectral sticky top-0 z-50 transition-all duration-300">
+        <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 relative z-10">
           <button onClick={cerrarSeccion} className="flex flex-col items-center lg:items-start text-left focus:outline-none group">
             <h1 className="text-2xl font-black tracking-tight uppercase flex items-center gap-2 text-white">
               <span className="text-zinc-400 group-hover:text-white transition-colors">PERU</span>
               <span className="relative">
-                 <span className="absolute -inset-2 bg-red-600/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                 <span className="relative text-red-600 drop-shadow-[0_0_8px_rgba(220,38,38,0.8)]">MUSIC DJ</span>
+                 {/* Glow del logo: Ahora es espectral y dinámico */}
+                 <span className="absolute -inset-2 bg-spectral blur-lg opacity-70 group-hover:opacity-100 transition-opacity animate-spectral-glow"></span>
+                 <span className="relative text-spectral drop-shadow-[0_0_10px_currentColor] animate-spectral-text">MUSIC DJ</span>
               </span>
             </h1>
           </button>
@@ -73,10 +78,11 @@ export default function Home() {
               <button 
                 key={item} 
                 onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
+                /* Estilo de botones: El borde y la sombra cambian con el espectro cuando están activos */
                 className={`group relative px-6 py-3 rounded-xl transition-all duration-300 border
                   ${seccionAbierta === item 
-                    ? 'text-white scale-105 shadow-[0_0_50px_rgba(255,0,0,0.6)] border-red-500 bg-red-600/20' 
-                    : 'text-zinc-300 hover:text-white border-white/5 hover:border-red-500/40 bg-white/5'
+                    ? 'text-white scale-105 shadow-[0_0_50px_currentColor] border-spectral-active bg-spectral-active/20 animate-spectral-border' 
+                    : 'text-zinc-300 hover:text-white border-white/5 hover:border-spectral/40 bg-white/5'
                   }`}
               >
                 <span className="relative z-10">{item}</span>
@@ -86,20 +92,21 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="w-full flex-grow relative pb-20">
+      <main className="w-full flex-grow relative pb-20 z-10">
         
-        {/* PORTADA PRINCIPAL */}
+        {/* PORTADA PRINCIPAL: Mantiene la imagen pero el glow es mucho más fuerte y colorido */}
         {!seccionAbierta && (
-          <div className="animate-fade-in">
+          <div className="animate-fade-in relative">
             <header className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" style={{ backgroundImage: "url('/bg-principal.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#070000]/80 to-[#070000] z-0"></div>
               <div className="relative z-10 text-center px-4 flex flex-col items-center">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/50 bg-red-600/20 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(220,38,38,0.4)]">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-spectral/50 bg-spectral/20 text-spectral-active text-[10px] font-bold uppercase tracking-widest mb-8 backdrop-blur-md shadow-[0_0_20px_currentColor] animate-spectral-border animate-spectral-text">
                   Plataforma Exclusiva
                 </span>
                 <h2 className="relative font-sans text-7xl md:text-9xl lg:text-[160px] font-extrabold tracking-tighter uppercase leading-[0.85] text-white">
                   <span className="block text-zinc-300">PERU</span>
-                  <span className="relative block mt-2 text-transparent bg-clip-text bg-gradient-to-b from-red-400 via-red-600 to-red-800 glitch-neon-text" data-text="MUSIC DJ">MUSIC DJ</span>
+                  {/* El título principal ahora alterna entre colores fuertes */}
+                  <span className="relative block mt-2 text-transparent bg-clip-text animate-spectral-gradient glitch-neon-text-spectral" data-text="MUSIC DJ">MUSIC DJ</span>
                 </h2>
               </div>
             </header>
@@ -110,12 +117,12 @@ export default function Home() {
             {seccionAbierta && (
             <section className="py-16">
                 {!packAbierto && (
-                <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-b border-red-900/20 pb-10">
+                <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-b border-spectral/20 pb-10 animate-spectral-border">
                     <div>
-                      <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]">{seccionAbierta}</h3>
+                      <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight drop-shadow-[0_0_20px_currentColor] animate-spectral-text">{seccionAbierta}</h3>
                     </div>
-                    <button onClick={cerrarSeccion} className="text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-all group px-5 py-2.5 rounded-full border border-white/5 hover:border-red-500/50 hover:bg-red-600/10">
-                      <span className="group-hover:-translate-x-1.5 transition-transform text-red-600">←</span> Regresar
+                    <button onClick={cerrarSeccion} className="text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-all group px-5 py-2.5 rounded-full border border-white/5 hover:border-spectral/50 hover:bg-spectral/10">
+                      <span className="group-hover:-translate-x-1.5 transition-transform text-spectral animate-spectral-text">←</span> Regresar
                     </button>
                 </div>
                 )}
@@ -126,21 +133,22 @@ export default function Home() {
                     <article 
                         key={key} 
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        className="animate-card-entry group relative bg-red-950/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-red-600/10 transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:border-red-500/40"
+                        /* Tarjetas: El brillo de hover es mucho más fuerte y cambia de color */
+                        className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/15 transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:border-spectral/40 hover:animate-spectral-border"
                         onClick={() => setPackAbierto(key)}
                     >
-                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-spectral/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         
-                        <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-black/60 relative flex items-center justify-center p-3 border border-red-900/20 shadow-inner">
+                        <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-black/60 relative flex items-center justify-center p-3 border border-spectral/20 shadow-inner animate-spectral-border">
                             <img src={item.portada} alt={item.titulo} className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110" />
                         </figure>
                         <div className="flex-grow flex flex-col justify-between relative z-10">
                           <div>
-                              <span className="text-red-500 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-3 block">{item.autor}</span>
+                              <span className="text-spectral-active text-[10px] font-extrabold uppercase tracking-[0.2em] mb-3 block animate-spectral-text">{item.autor}</span>
                               <h4 className="text-zinc-100 font-bold text-lg leading-tight line-clamp-2 mb-5 group-hover:text-white transition-colors">{item.titulo}</h4>
                           </div>
-                          <div className="flex items-center text-xs font-bold text-zinc-500 uppercase tracking-widest group-hover:text-red-400 pt-4 border-t border-red-900/20">
-                              Ver Detalles <span className="ml-2.5 group-hover:translate-x-1.5 transition-transform text-red-600">→</span>
+                          <div className="flex items-center text-xs font-bold text-zinc-500 uppercase tracking-widest group-hover:text-spectral-active pt-4 border-t border-spectral/20 animate-spectral-border transition-colors">
+                              Ver Detalles <span className="ml-2.5 group-hover:translate-x-1.5 transition-transform text-spectral animate-spectral-text">→</span>
                           </div>
                         </div>
                     </article>
@@ -150,17 +158,19 @@ export default function Home() {
 
                 {itemSeleccionado && packAbierto && (
                     <div className="max-w-5xl mx-auto animate-fade-in-up">
-                    <button onClick={() => setPackAbierto(null)} className="mb-10 text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/5 hover:border-red-500/40">
-                        <span className="text-red-500">←</span> Regresar a {seccionAbierta}
+                    <button onClick={() => setPackAbierto(null)} className="mb-10 text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/5 hover:border-spectral/40">
+                        <span className="text-spectral animate-spectral-text">←</span> Regresar a {seccionAbierta}
                     </button>
-                    <div className="bg-red-950/10 backdrop-blur-xl border border-red-500/20 rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(220,38,38,0.15)] p-10 lg:p-16 flex flex-col md:flex-row gap-12 items-center">
-                        <figure className="w-full max-w-[280px] shrink-0 bg-black/60 rounded-3xl p-3 border border-red-500/20">
+                    {/* Panel de detalles: Borde y sombra espectral intensos */}
+                    <div className="bg-spectral/10 backdrop-blur-xl border border-spectral/20 rounded-[2.5rem] overflow-hidden shadow-[0_0_60px_currentColor] p-10 lg:p-16 flex flex-col md:flex-row gap-12 items-center animate-spectral-border">
+                        <figure className="w-full max-w-[280px] shrink-0 bg-black/60 rounded-3xl p-3 border border-spectral/20 animate-spectral-border">
                             <img src={itemSeleccionado.portada} alt={itemSeleccionado.titulo} className="w-full h-auto object-contain rounded-2xl shadow-2xl" />
                         </figure>
                         <div className="flex-grow text-center md:text-left">
-                            <h4 className="text-white font-extrabold text-4xl lg:text-5xl leading-tight mb-10 tracking-tight drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">{itemSeleccionado.titulo}</h4>
-                            <a href={itemSeleccionado.link} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center bg-white text-black font-extrabold py-5 px-10 rounded-2xl gap-3.5 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-red-600/40 active:scale-95">
-                                <span className="absolute inset-0 rounded-2xl animate-pulse bg-red-600/10 opacity-0 group-hover:opacity-100"></span>
+                            <h4 className="text-white font-extrabold text-4xl lg:text-5xl leading-tight mb-10 tracking-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.7)]">{itemSeleccionado.titulo}</h4>
+                            {/* Botón de descarga: El glow es mucho más fuerte al hover y cambia de color */}
+                            <a href={itemSeleccionado.link} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center bg-white text-black font-extrabold py-5 px-10 rounded-2xl gap-3.5 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-spectral/60 hover:text-white active:scale-95">
+                                <span className="absolute inset-0 rounded-2xl animate-pulse bg-spectral/20 opacity-0 group-hover:opacity-100"></span>
                                 <span>Descargar Archivo</span>
                             </a>
                         </div>
@@ -172,20 +182,82 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="py-10 text-center border-t border-red-900/20 bg-black/80 backdrop-blur-md">
+      <footer className="py-10 text-center border-t border-spectral/20 bg-black/80 backdrop-blur-md relative z-10 animate-spectral-border">
         <p className="text-zinc-600 text-[10px] uppercase font-bold tracking-[0.4em]">© 2026 PERU MUSIC DJ | PERU</p>
       </footer>
 
       <style dangerouslySetInnerHTML={{__html: `
-        .bg-power-red-pattern {
+        /* --- SISTEMA ESPECTRAL PROFESIONAL --- */
+        
+        /* Definición de colores fuertes que cambian suavemente (RGB Espectral) */
+        @keyframes spectralCycle {
+          0%, 100% { --spectral-color: #ff0000; } /* Rojo Fuerte */
+          20% { --spectral-color: #0088ff; }     /* Azul Fuerte */
+          40% { --spectral-color: #00ff88; }     /* Verde Neón */
+          60% { --spectral-color: #ff00ee; }     /* Morado Neón */
+          80% { --spectral-color: #ffcc00; }     /* Amarillo Fuerte */
+        }
+
+        /* Aplicar la variable de color animada a todo el sitio */
+        :root {
+          animation: spectralCycle 10s linear infinite;
+        }
+
+        /* Utilidades de clase para usar el color dinámico */
+        .border-spectral { border-color: color-mix(in srgb, var(--spectral-color) 40%, transparent); }
+        .border-spectral-active { border-color: var(--spectral-color); }
+        .bg-spectral { bg-color: color-mix(in srgb, var(--spectral-color) 10%, transparent); }
+        .bg-spectral-active { bg-color: color-mix(in srgb, var(--spectral-color) 25%, transparent); }
+        .text-spectral { color: color-mix(in srgb, var(--spectral-color) 80%, white); }
+        .text-spectral-active { color: var(--spectral-color); }
+        .shadow-spectral { --tw-shadow-color: var(--spectral-color); --tw-shadow: 0 0 20px 0 var(--spectral-color); }
+
+        /* NUEVO PATRÓN DE FONDO: Mucho más oscuro, el rojo es sutil y deja que el glow hable */
+        .bg-power-spectral-pattern {
           background-image: 
-            radial-gradient(circle at 50% 40%, rgba(220, 38, 38, 0.15) 0%, transparent 60%),
-            radial-gradient(circle at 100% 0%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-            radial-gradient(circle at 0% 100%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-            linear-gradient(to bottom, #070000, #120000);
+            radial-gradient(circle at 50% 40%, rgba(30, 0, 0, 0.2) 0%, transparent 60%),
+            radial-gradient(circle at 100% 0%, rgba(20, 0, 0, 0.1) 0%, transparent 40%),
+            radial-gradient(circle at 0% 100%, rgba(20, 0, 0, 0.1) 0%, transparent 40%),
+            linear-gradient(to bottom, #030000, #0a0000);
           background-attachment: fixed;
         }
 
+        /* CAPA DE GLOW AMBIENTAL DINÁMICA: Aumenta la intensidad del color */
+        .bg-power-spectral-glow {
+          background: radial-gradient(circle at center, var(--spectral-color) 0%, transparent 70%);
+          animation: spectralCycle 10s linear infinite;
+        }
+
+        /* ANIMACIONES ESPECTRALES ESPECÍFICAS */
+        
+        @keyframes spectralGlow {
+          0%, 100% { filter: blur(12px) opacity(0.7); }
+          50% { filter: blur(18px) opacity(1); }
+        }
+        .animate-spectral-glow { animation: spectralGlow 4s ease-in-out infinite; }
+
+        .animate-spectral-border { animation: spectralCycle 10s linear infinite; border-color: var(--spectral-color) !important; }
+        .animate-spectral-text { animation: spectralCycle 10s linear infinite; color: var(--spectral-color) !important; }
+
+        /* GRADIENTE ESPECTRAL PROFESIONAL PARA EL TÍTULO */
+        @keyframes spectralGradient {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        .animate-spectral-gradient {
+          background-image: linear-gradient(90deg, #ff0000, #0088ff, #00ff88, #ff00ee, #ffcc00, #ff0000);
+          background-size: 200% auto;
+          animation: spectralGradient 6s linear infinite;
+        }
+
+        /* EFECTO GLITCH NEÓN ESPECTRAL: Sombra de texto dinámica y fuerte */
+        .glitch-neon-text-spectral {
+          position: relative;
+          text-shadow: 0 0 20px var(--spectral-color);
+          animation: spectralCycle 10s linear infinite;
+        }
+
+        /* --- RESTO DE ANIMACIONES (Mantenidas y ajustadas) --- */
         @keyframes cardEntry {
           from { opacity: 0; transform: translateY(40px) scale(0.9); filter: blur(10px); }
           to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
@@ -203,10 +275,6 @@ export default function Home() {
         }
         .animate-fade-in {
           animation: fadeIn 1.2s ease-in-out forwards;
-        }
-        .glitch-neon-text {
-          position: relative;
-          text-shadow: 0 0 15px rgba(220,38,38,0.7);
         }
       `}} />
     </div>
