@@ -25,7 +25,7 @@ const backups: Record<string, ItemData> = {
   lopez: { titulo: "BACKUP DJ LOPEZ", autor: "DJ LOPEZ", portada: "/portada-lopez.png", link: "https://drive.google.com/drive/folders/1imMIi36BoKoQWkvNmmvTWnGjIUGr8c-H?usp=drive_link" } 
 };
 
-/* --- COLECCIONES ACTUALIZADAS POR EL INGE --- */
+/* --- COLECCIONES ACTUALIZADAS CON FOTOS REALES --- */
 const colecciones: Record<string, ItemData> = {
   elmer: { 
     titulo: "COLECCION DE ELMER MIX 2025 VOL 01 - 07", 
@@ -36,13 +36,13 @@ const colecciones: Record<string, ItemData> = {
   carlos: { 
     titulo: "COLECCION DJ CARLOS JULIACA 2024", 
     autor: "DJ CARLOS JULIACA", 
-    portada: "/portada-placeholder.png", 
+    portada: "/portada-carlos.png", 
     link: "#" 
   },
   thony: { 
     titulo: "COLECCION DJ THONY CUSCO 2024", 
     autor: "DJ THONY", 
-    portada: "/portada-placeholder.png", 
+    portada: "/portada-thony.png", 
     link: "#" 
   }
 };
@@ -71,20 +71,16 @@ export default function Home() {
   const itemSeleccionado = packAbierto && contenidoActual ? contenidoActual[packAbierto] : null;
 
   return (
-    /* APLICAMOS LA ANIMACIÓN DE SINCRONIZACIÓN ULTRA-COLORIDA AQUÍ */
     <div className="min-h-screen bg-[#030000] bg-power-spectral-pattern text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-cyan-600/60 selection:text-white relative animate-spectral-sync-ultra">
       
-      {/* CAPA DE GLOW AMBIENTAL SINCRONIZADA E INTENSA */}
       <div className="fixed inset-0 z-0 opacity-30 bg-power-spectral-glow"></div>
 
-      {/* NAVBAR: Totalmente sincronizado con el ciclo de 12 colores fuertes */}
       <nav className="px-6 py-4 bg-black/70 backdrop-blur-3xl border-b border-spectral sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 relative z-10">
           <button onClick={cerrarSeccion} className="flex flex-col items-center lg:items-start text-left focus:outline-none group">
             <h1 className="text-2xl font-black tracking-tight uppercase flex items-center gap-2 text-white">
               <span className="text-zinc-400 group-hover:text-white transition-colors">PERU</span>
               <span className="relative">
-                 {/* Glow del logo: Sincronizado, ancho e intenso */}
                  <span className="absolute -inset-3 bg-spectral blur-2xl opacity-80 group-hover:opacity-100 transition-opacity"></span>
                  <span className="relative text-spectral drop-shadow-[0_0_20px_currentColor]">MUSIC DJ</span>
               </span>
@@ -96,7 +92,6 @@ export default function Home() {
               <button 
                 key={item} 
                 onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
-                /* Botones activos: Borde, fondo y sombra masiva sincronizados */
                 className={`group relative px-6 py-3 rounded-xl transition-all duration-300 border
                   ${seccionAbierta === item 
                     ? 'text-white scale-105 shadow-[0_0_70px_currentColor] border-spectral-active bg-spectral-active/30' 
@@ -111,12 +106,9 @@ export default function Home() {
       </nav>
 
       <main className="w-full flex-grow relative pb-20 z-10">
-        
-        {/* PORTADA PRINCIPAL: Glow masivo y colorful totalmente sincronizado */}
         {!seccionAbierta && (
           <div className="animate-fade-in relative">
             <header className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" style={{ backgroundImage: "url('/bg-principal.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-              {/* Degradado de fondo más oscuro para que resalte más el color */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030000]/95 to-[#030000] z-0"></div>
               <div className="relative z-10 text-center px-4 flex flex-col items-center">
                 <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-spectral bg-spectral/20 text-spectral-active text-[11px] font-bold uppercase tracking-widest mb-12 backdrop-blur-md shadow-[0_0_40px_currentColor]">
@@ -124,7 +116,6 @@ export default function Home() {
                 </span>
                 <h2 className="relative font-sans text-8xl md:text-9xl lg:text-[200px] font-extrabold tracking-tighter uppercase leading-[0.75] text-white">
                   <span className="block text-zinc-300">PERU</span>
-                  {/* Título principal: El gradiente dinámico ahora usa los 12 colores fuertes sincronizados */}
                   <span className="relative block mt-4 text-transparent bg-clip-text animate-spectral-gradient-ultra glitch-neon-text-spectral" data-text="MUSIC DJ">MUSIC DJ</span>
                 </h2>
               </div>
@@ -152,8 +143,8 @@ export default function Home() {
                     <article 
                         key={key} 
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        /* Tarjetas: Hover con brillo masivo sincronizado al color activo */
-                        className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/25 transition-all duration-500 shadow-2xl hover:-translate-y-3 hover:border-spectral hover:shadow-[0_0_60px_currentColor]"
+                        /* SOMBRA SINCRONIZADA: Eliminada la sombra blanca, ahora usa currentColor que es el color espectral */
+                        className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/25 transition-all duration-500 hover:-translate-y-3 hover:border-spectral hover:shadow-[0_0_60px_currentColor] shadow-xl"
                         onClick={() => setPackAbierto(key)}
                     >
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-spectral/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -180,14 +171,12 @@ export default function Home() {
                     <button onClick={() => setPackAbierto(null)} className="mb-10 text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/10 hover:border-spectral/50">
                         <span className="text-spectral">←</span> Regresar a {seccionAbierta}
                     </button>
-                    {/* Panel de detalles: Borde y sombra espectral masiva sincronizados */}
                     <div className="bg-spectral/15 backdrop-blur-xl border-2 border-spectral rounded-[2.5rem] overflow-hidden shadow-[0_0_80px_currentColor] p-10 lg:p-16 flex flex-col md:flex-row gap-12 items-center">
                         <figure className="w-full max-w-[300px] shrink-0 bg-black/70 rounded-3xl p-3 border-2 border-spectral shadow-2xl">
                             <img src={itemSeleccionado.portada} alt={itemSeleccionado.titulo} className="w-full h-auto object-contain rounded-2xl shadow-2xl" />
                         </figure>
                         <div className="flex-grow text-center md:text-left">
                             <h4 className="text-white font-extrabold text-5xl lg:text-6xl leading-tight mb-12 tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">{itemSeleccionado.titulo}</h4>
-                            {/* Botón de descarga: Glow masivo sincronizado al hover */}
                             <a href={itemSeleccionado.link} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center bg-white text-black font-extrabold py-5 px-12 rounded-2xl gap-4 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-spectral/80 hover:text-white active:scale-95">
                                 <span className="absolute inset-0 rounded-2xl animate-pulse bg-spectral/30 opacity-0 group-hover:opacity-100"></span>
                                 <span className="relative z-10 text-lg">Descargar Archivo</span>
@@ -206,30 +195,25 @@ export default function Home() {
       </footer>
 
       <style dangerouslySetInnerHTML={{__html: `
-        /* --- SISTEMA ESPECTRAL ULTRA-COLORIDO Y SINCRONIZADO (PROFESIONAL) --- */
-        
-        /* Definición de 12 colores ultra-fuertes e intensos (Neón/Eléctricos) */
         @keyframes spectralCycleUltra {
-          0%, 100% { --spectral-color: #ff0000; } /* Rojo Puro */
-          8.33% { --spectral-color: #ff8800; }  /* Naranja Brillante */
-          16.66% { --spectral-color: #ffff00; } /* Amarillo Neón */
-          25% { --spectral-color: #88ff00; }     /* Lima Eléctrico */
-          33.33% { --spectral-color: #00ff00; } /* Verde Puro */
-          41.66% { --spectral-color: #00ff88; } /* Cian Primavera */
-          50% { --spectral-color: #00ffff; }     /* Cian Cian */
-          58.33% { --spectral-color: #0088ff; } /* Azul Eléctrico */
-          66.66% { --spectral-color: #0000ff; } /* Azul Puro */
-          75% { --spectral-color: #8800ff; }     /* Violeta Intenso */
-          83.33% { --spectral-color: #ff00ff; } /* Magenta Neón */
-          91.66% { --spectral-color: #ff0088; } /* Rosa Fuerte */
+          0%, 100% { --spectral-color: #ff0000; }
+          8.33% { --spectral-color: #ff8800; }
+          16.66% { --spectral-color: #ffff00; }
+          25% { --spectral-color: #88ff00; }
+          33.33% { --spectral-color: #00ff00; }
+          41.66% { --spectral-color: #00ff88; }
+          50% { --spectral-color: #00ffff; }
+          58.33% { --spectral-color: #0088ff; }
+          66.66% { --spectral-color: #0000ff; }
+          75% { --spectral-color: #8800ff; }
+          83.33% { --spectral-color: #ff00ff; }
+          91.66% { --spectral-color: #ff0088; }
         }
 
-        /* Aplicar la animación ULTRA a todo el sitio de forma SINCRONIZADA */
         .animate-spectral-sync-ultra {
           animation: spectralCycleUltra 12s linear infinite;
         }
 
-        /* Utilidades de clase sincronizadas */
         .border-spectral { border-color: color-mix(in srgb, var(--spectral-color) 60%, transparent) !important; transition: border-color 0.3s ease; }
         .border-spectral-active { border-color: var(--spectral-color) !important; transition: border-color 0.3s ease; }
         .bg-spectral { background-color: color-mix(in srgb, var(--spectral-color) 15%, transparent) !important; transition: background-color 0.3s ease; }
@@ -237,7 +221,6 @@ export default function Home() {
         .text-spectral { color: color-mix(in srgb, var(--spectral-color) 90%, white) !important; transition: color 0.3s ease; }
         .text-spectral-active { color: var(--spectral-color) !important; transition: color 0.3s ease; }
 
-        /* PATRÓN DE FONDO: Ultra oscuro para contraste máximo */
         .bg-power-spectral-pattern {
           background-image: 
             radial-gradient(circle at 50% 40%, rgba(20, 0, 0, 0.3) 0%, transparent 70%),
@@ -247,13 +230,10 @@ export default function Home() {
           background-attachment: fixed;
         }
 
-        /* CAPA DE GLOW AMBIENTAL DINÁMICA ULTRA-INTENSA */
         .bg-power-spectral-glow {
           background: radial-gradient(circle at center, var(--spectral-color) 0%, transparent 70%);
-          /* Sincronizada con la animación global */
         }
 
-        /* GRADIENTE ULTRA-COLORIDO SINCRONIZADO PARA EL TÍTULO */
         @keyframes spectralGradientUltra {
           0% { background-position: 0% 50%; }
           100% { background-position: 200% 50%; }
@@ -264,14 +244,11 @@ export default function Home() {
           animation: spectralGradientUltra 8s linear infinite;
         }
 
-        /* EFECTO GLITCH NEÓN ESPECTRAL ULTRA-FUERTE */
         .glitch-neon-text-spectral {
           position: relative;
           text-shadow: 0 0 25px var(--spectral-color);
-          /* Sincronizada con el ciclo global */
         }
 
-        /* --- RESTO DE ANIMACIONES (Mantenidas y ajustadas) --- */
         @keyframes cardEntry {
           from { opacity: 0; transform: translateY(40px) scale(0.9); filter: blur(10px); }
           to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
