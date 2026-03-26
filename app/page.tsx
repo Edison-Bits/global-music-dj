@@ -36,13 +36,13 @@ const colecciones: Record<string, ItemData> = {
   carlos: { 
     titulo: "COLECCION DJ CARLOS JULIACA 2024", 
     autor: "DJ CARLOS JULIACA", 
-    portada: "/portada-placeholder.png", 
+    portada: "/portada-carlos.png", 
     link: "#" 
   },
   thony: { 
     titulo: "COLECCION DJ THONY CUSCO 2024", 
     autor: "DJ THONY", 
-    portada: "/portada-placeholder.png", 
+    portada: "/portada-thony.png", 
     link: "#" 
   }
 };
