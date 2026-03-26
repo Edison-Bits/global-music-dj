@@ -8,12 +8,6 @@ type ItemData = {
   link: string;
 };
 
-type Comentario = {
-  nombre: string;
-  texto: string;
-  fecha: string;
-};
-
 type SeccionesValidas = 'Librerías' | 'Samples' | 'Efectos' | 'Pack' | 'Set DJ' | 'Colecciones DJ' | 'Backup';
 
 const packs: Record<string, ItemData> = {
@@ -59,7 +53,6 @@ export default function Home() {
   const itemSeleccionado = packAbierto && contenidoActual ? contenidoActual[packAbierto] : null;
 
   return (
-    /* FONDO REPOTENCIADO: Rojos más intensos y efectos de luz activa */
     <div className="min-h-screen bg-[#070000] bg-power-red-pattern text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-red-600/60 selection:text-white">
       
       {/* NAVBAR */}
@@ -119,11 +112,10 @@ export default function Home() {
                 {!packAbierto && (
                 <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-b border-red-900/20 pb-10">
                     <div>
-                    <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]">{seccionAbierta}</h3>
-                    <p className="text-red-500/70 text-base mt-3 max-w-md font-light italic">Estilo profesional con energía roja.</p>
+                      <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]">{seccionAbierta}</h3>
                     </div>
                     <button onClick={cerrarSeccion} className="text-zinc-400 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-all group px-5 py-2.5 rounded-full border border-white/5 hover:border-red-500/50 hover:bg-red-600/10">
-                    <span className="group-hover:-translate-x-1.5 transition-transform text-red-600">←</span> Regresar
+                      <span className="group-hover:-translate-x-1.5 transition-transform text-red-600">←</span> Regresar
                     </button>
                 </div>
                 )}
@@ -137,20 +129,19 @@ export default function Home() {
                         className="animate-card-entry group relative bg-red-950/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-red-600/10 transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:border-red-500/40"
                         onClick={() => setPackAbierto(key)}
                     >
-                        {/* Brillo interno de la tarjeta */}
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         
                         <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-black/60 relative flex items-center justify-center p-3 border border-red-900/20 shadow-inner">
                             <img src={item.portada} alt={item.titulo} className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110" />
                         </figure>
                         <div className="flex-grow flex flex-col justify-between relative z-10">
-                        <div>
-                            <span className="text-red-500 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-3 block">{item.autor}</span>
-                            <h4 className="text-zinc-100 font-bold text-lg leading-tight line-clamp-2 mb-5 group-hover:text-white transition-colors">{item.titulo}</h4>
-                        </div>
-                        <div className="flex items-center text-xs font-bold text-zinc-500 uppercase tracking-widest group-hover:text-red-400 pt-4 border-t border-red-900/20">
-                            Ver Detalles <span className="ml-2.5 group-hover:translate-x-1.5 transition-transform text-red-600">→</span>
-                        </div>
+                          <div>
+                              <span className="text-red-500 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-3 block">{item.autor}</span>
+                              <h4 className="text-zinc-100 font-bold text-lg leading-tight line-clamp-2 mb-5 group-hover:text-white transition-colors">{item.titulo}</h4>
+                          </div>
+                          <div className="flex items-center text-xs font-bold text-zinc-500 uppercase tracking-widest group-hover:text-red-400 pt-4 border-t border-red-900/20">
+                              Ver Detalles <span className="ml-2.5 group-hover:translate-x-1.5 transition-transform text-red-600">→</span>
+                          </div>
                         </div>
                     </article>
                     ))}
@@ -186,7 +177,6 @@ export default function Home() {
       </footer>
 
       <style dangerouslySetInnerHTML={{__html: `
-        /* FONDO POWER RED: Rojo intenso y pulsante */
         .bg-power-red-pattern {
           background-image: 
             radial-gradient(circle at 50% 40%, rgba(220, 38, 38, 0.15) 0%, transparent 60%),
