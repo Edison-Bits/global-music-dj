@@ -24,10 +24,12 @@ const packs: Record<string, ItemData> = {
   genesis: { titulo: "PACK DE GRUPO GENESIS", autor: "DJ ENZO VIP", portada: "/portada-genesis.png", link: "https://drive.google.com/drive/folders/1fGKZH_COilJrVwERBv1OyJTj7268zp8s?usp=sharing" }
 };
 
+// --- SECCIÓN BACKUPS CON DJ LOPEZ INCLUIDO ---
 const backups: Record<string, ItemData> = {
   willy: { titulo: "BACKUP DJ WILLY CUSCO", autor: "DJ WILLY CUSCO", portada: "/portada-willy.png", link: "https://drive.google.com/drive/folders/1x1TAn93SdCpoNlmA91E_XxPzvxvpiyka?usp=drive_link" },
   gonz: { titulo: "BACKUP DJ GONZ", autor: "DJ GONZ", portada: "/portada-gonz.png", link: "https://drive.google.com/drive/folders/1nife5YbCQ_0o11msd9pDOrtHvVxbRvB9?usp=drive_link" },
-  ferty: { titulo: "MINI BACKUP DJ FERTY 2025", autor: "DJ FERTY", portada: "/portada-ferty.png", link: "https://drive.google.com/drive/folders/1pOzqJ8jjAuFbJxfVi5z9dleWMUcSdLvD?usp=drive_link" }
+  ferty: { titulo: "MINI BACKUP DJ FERTY 2025", autor: "DJ FERTY", portada: "/portada-ferty.png", link: "https://drive.google.com/drive/folders/1pOzqJ8jjAuFbJxfVi5z9dleWMUcSdLvD?usp=drive_link" },
+  lopez: { titulo: "BACKUP DJ LOPEZ", autor: "DJ LOPEZ", portada: "/portada-lopez.png", link: "https://drive.google.com/drive/folders/TU_LINK_AQUI" }
 };
 
 const colecciones: Record<string, ItemData> = {
@@ -162,7 +164,6 @@ export default function Home() {
                         className="animate-card-entry group relative bg-[#080808] border border-white/[0.03] p-6 rounded-3xl flex flex-col hover:bg-[#0a0a0a] transition-all duration-500 shadow-xl cursor-pointer hover:-translate-y-2 hover:border-red-500/30"
                         onClick={() => setPackAbierto(key)}
                     >
-                        {/* EFECTO GLOW ROJO EN HOVER */}
                         <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none bg-red-600/10"></div>
                         
                         <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-[#030303] relative flex items-center justify-center p-3 border border-white/[0.02] shadow-inner">
