@@ -81,10 +81,11 @@ export default function Home() {
   const itemSeleccionado = packAbierto && contenidoActual ? contenidoActual[packAbierto] : null;
 
   return (
-    <div className="min-h-screen bg-[#030303] text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-red-600/40 selection:text-white">
+    /* CAMBIO CLAVE: Nuevo fondo con degradado radial y patrón de ingeniería */
+    <div className="min-h-screen bg-[#050505] bg-main-pattern text-zinc-100 font-sans overflow-x-hidden flex flex-col selection:bg-red-600/40 selection:text-white">
       
       {/* NAVBAR */}
-      <nav className="px-6 py-4 bg-[#050505]/90 backdrop-blur-2xl border-b border-white/[0.03] sticky top-0 z-50 transition-all duration-300 shadow-2xl shadow-black/50">
+      <nav className="px-6 py-4 bg-[#050505]/40 backdrop-blur-3xl border-b border-white/[0.03] sticky top-0 z-50 transition-all duration-300 shadow-2xl">
         <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
           <button onClick={cerrarSeccion} className="flex flex-col items-center lg:items-start text-left focus:outline-none group transition-transform duration-300">
             <h1 className="text-2xl font-black tracking-tight uppercase flex items-center gap-2 text-white">
@@ -96,26 +97,21 @@ export default function Home() {
             </h1>
           </button>
 
-          {/* BOTONES COLORIDOS / DJ STYLE */}
-          <div className="flex flex-wrap justify-center gap-3 w-full lg:w-auto text-[11px] font-black uppercase tracking-widest">
+          {/* BOTONES CON ESTILO DJ */}
+          <div className="flex flex-wrap justify-center gap-4 w-full lg:w-auto text-[11px] font-black uppercase tracking-widest p-2 rounded-2xl">
             {SECCIONES.map((item) => (
               <button 
                 key={item} 
                 onClick={() => { setSeccionAbierta(item); setPackAbierto(null); }} 
-                className={`group relative px-6 py-3 rounded-xl transition-all duration-300 flex-grow sm:flex-grow-0 text-center focus:outline-none overflow-hidden border border-white/10
+                className={`group relative px-6 py-3 rounded-xl transition-all duration-300 flex-grow sm:flex-grow-0 text-center focus:outline-none overflow-hidden border border-white/5
                   ${seccionAbierta === item 
-                    ? 'text-white shadow-[0_0_30px_rgba(255,0,0,0.4)] scale-105' 
-                    : 'text-zinc-200 hover:text-white hover:border-white/40'
+                    ? 'text-white scale-105 shadow-[0_0_40px_rgba(255,0,0,0.4)] border-red-500/50' 
+                    : 'text-zinc-300 hover:text-white hover:border-white/20'
                   }`}
               >
-                {/* FONDO COLORIDO ANIMADO (MESH GRADIENT) */}
-                <span className={`absolute inset-0 transition-opacity duration-500 bg-mesh-gradient animate-mesh-shift
-                  ${seccionAbierta === item ? 'opacity-100' : 'opacity-40 group-hover:opacity-80'}`}>
+                <span className={`absolute inset-0 transition-opacity duration-500 bg-neon-laser-gradient animate-laser-shift
+                  ${seccionAbierta === item ? 'opacity-100' : 'opacity-20 group-hover:opacity-100'}`}>
                 </span>
-                
-                {/* Capa de brillo superior */}
-                <span className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50"></span>
-                
                 <span className="relative z-10 drop-shadow-md">{item}</span>
               </button>
             ))}
@@ -125,18 +121,13 @@ export default function Home() {
 
       <main className="w-full flex-grow relative pb-20">
         
-        {/* PORTADA (SIN TOCAR FONDO NI TAMAÑO) */}
+        {/* PORTADA PRINCIPAL */}
         {!seccionAbierta && (
           <div className="animate-fade-in">
             <header className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" style={{ backgroundImage: "url('/bg-principal.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-              <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/10 via-[#030303]/80 to-[#030303] z-0"></div>
-              <div className="absolute inset-0 bg-black/40 z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505] z-0"></div>
               <div className="relative z-10 text-center px-4 flex flex-col items-center">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-8 backdrop-blur-md shadow-lg shadow-black/30">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-                  </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 text-red-400 text-[10px] font-bold uppercase tracking-widest mb-8 backdrop-blur-md">
                   Plataforma Exclusiva
                 </span>
                 <h2 className="relative font-sans text-7xl md:text-9xl lg:text-[160px] font-extrabold tracking-tighter uppercase leading-[0.85] text-white">
@@ -148,33 +139,31 @@ export default function Home() {
           </div>
         )}
 
-        <div className="max-w-screen-2xl mx-auto w-full px-6">
+        <div className="max-w-screen-2xl mx-auto w-full px-6 relative z-10">
             {seccionAbierta && (
             <section className="py-16">
                 {!packAbierto && (
                 <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-b border-white/[0.04] pb-10">
                     <div>
                     <h3 className="text-4xl lg:text-6xl font-extrabold uppercase text-white tracking-tight">{seccionAbierta}</h3>
-                    <p className="text-zinc-500 text-base mt-3 max-w-md font-light">Explora nuestro catálogo para DJs profesionales.</p>
+                    <p className="text-zinc-500 text-base mt-3 max-w-md font-light italic">Calidad de estudio profesional.</p>
                     </div>
-                    <button onClick={cerrarSeccion} className="text-zinc-500 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-colors group px-5 py-2.5 rounded-full border border-white/[0.03] hover:bg-[#0a0a0a]">
-                    <span className="group-hover:-translate-x-1.5 transition-transform text-red-500">←</span> Inicio
+                    <button onClick={cerrarSeccion} className="text-zinc-500 hover:text-white font-semibold text-xs flex items-center gap-2.5 transition-colors group px-5 py-2.5 rounded-full border border-white/[0.03] hover:bg-white/5">
+                    <span className="group-hover:-translate-x-1.5 transition-transform text-red-500">←</span> Regresar
                     </button>
                 </div>
                 )}
 
-                {/* TARJETAS (NO SE TOCARON COMO PEDISTE) */}
                 {contenidoActual && !packAbierto && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {Object.entries(contenidoActual).map(([key, item], index) => (
                     <article 
                         key={key} 
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        className="animate-card-entry group relative bg-[#080808] border border-white/[0.03] p-6 rounded-3xl flex flex-col hover:bg-[#0a0a0a] transition-all duration-500 shadow-xl cursor-pointer hover:-translate-y-2 hover:border-red-500/30"
+                        className="animate-card-entry group relative bg-white/[0.02] border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-sm hover:bg-white/[0.05] transition-all duration-500 shadow-xl cursor-pointer hover:-translate-y-2 hover:border-red-500/30"
                         onClick={() => setPackAbierto(key)}
                     >
-                        <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none bg-red-600/10"></div>
-                        <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-[#030303] relative flex items-center justify-center p-3 border border-white/[0.02] shadow-inner">
+                        <figure className="aspect-square w-full mb-6 overflow-hidden rounded-2xl bg-black/40 relative flex items-center justify-center p-3 border border-white/5 shadow-inner">
                             <img src={item.portada} alt={item.titulo} className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110" />
                         </figure>
                         <div className="flex-grow flex flex-col justify-between">
@@ -194,16 +183,16 @@ export default function Home() {
                 {itemSeleccionado && packAbierto && (
                     <div className="max-w-5xl mx-auto animate-fade-in-up">
                     <button onClick={() => setPackAbierto(null)} className="mb-10 text-zinc-500 hover:text-white font-semibold text-xs flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/[0.03]">
-                        <span className="text-red-500">←</span> Regresar
+                        <span className="text-red-500">←</span> Regresar a {seccionAbierta}
                     </button>
-                    <div className="bg-[#080808] border border-white/[0.04] rounded-[2.5rem] overflow-hidden shadow-2xl p-10 lg:p-16 flex flex-col md:flex-row gap-12 items-center">
-                        <figure className="w-full max-w-[280px] shrink-0 bg-[#030303] rounded-3xl p-3 border border-white/[0.03]">
+                    <div className="bg-white/[0.02] backdrop-blur-md border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl p-10 lg:p-16 flex flex-col md:flex-row gap-12 items-center">
+                        <figure className="w-full max-w-[280px] shrink-0 bg-black/40 rounded-3xl p-3 border border-white/5">
                             <img src={itemSeleccionado.portada} alt={itemSeleccionado.titulo} className="w-full h-auto object-contain rounded-2xl" />
                         </figure>
                         <div className="flex-grow text-center md:text-left">
-                            <h4 className="text-white font-extrabold text-4xl lg:text-5xl leading-tight mb-10 tracking-tight">{itemSeleccionado.titulo}</h4>
-                            <a href={itemSeleccionado.link} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center bg-gradient-to-b from-zinc-50 to-zinc-300 text-black font-extrabold py-5 px-10 rounded-2xl gap-3.5 transition-all shadow-xl hover:shadow-white/10 active:scale-95">
-                                <span className="absolute inset-0 rounded-2xl animate-pulse bg-white/20 opacity-0 group-hover:opacity-100 blur-xl"></span>
+                            <h4 className="text-white font-extrabold text-4xl lg:text-5xl leading-tight mb-10 tracking-tight drop-shadow-2xl">{itemSeleccionado.titulo}</h4>
+                            <a href={itemSeleccionado.link} target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center bg-white text-black font-extrabold py-5 px-10 rounded-2xl gap-3.5 transition-all shadow-xl hover:shadow-white/10 active:scale-95">
+                                <span className="absolute inset-0 rounded-2xl animate-pulse bg-black/10 opacity-0 group-hover:opacity-100"></span>
                                 <span>Descargar Archivo</span>
                             </a>
                         </div>
@@ -215,44 +204,51 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="py-10 text-center border-t border-white/[0.03] bg-[#020202]">
+      <footer className="py-10 text-center border-t border-white/[0.03] bg-[#050505]/60">
         <p className="text-zinc-700 text-[10px] uppercase font-bold tracking-[0.4em]">© 2026 PERU MUSIC DJ | PERU</p>
       </footer>
 
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes meshShift {
+        /* FONDO FANTÁSTICO DE PANTALLA COMPLETA */
+        .bg-main-pattern {
+          background-image: 
+            radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 0% 0%, rgba(220, 38, 38, 0.03) 0%, transparent 30%),
+            linear-gradient(to bottom, #050505, #0a0a0a);
+          background-attachment: fixed;
+        }
+
+        @keyframes laserShift {
           0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
         }
-        .bg-mesh-gradient {
-          background: linear-gradient(45deg, #ff0000, #9333ea, #06b6d4, #ff0000);
-          background-size: 300% 300%;
+        .bg-neon-laser-gradient {
+          background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)),
+            repeating-linear-gradient(45deg, rgba(6, 182, 212, 0.1) 0px, rgba(6, 182, 212, 0.1) 2px, transparent 2px, transparent 15px),
+            linear-gradient(90deg, #ff0000, #06b6d4, #ff0000);
+          background-size: 100% 100%, 100% 100%, 200% 100%;
         }
-        .animate-mesh-shift {
-          animation: meshShift 8s ease infinite;
+        .animate-laser-shift {
+          animation: laserShift 10s linear infinite;
         }
         @keyframes cardEntry {
           from { opacity: 0; transform: translateY(30px) scale(0.95); }
           to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
         }
         .animate-card-entry {
           opacity: 0;
           animation: cardEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animate-fade-in-up {
-          animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: cardEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animate-fade-in {
           animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         .glitch-neon-text {
           position: relative;
