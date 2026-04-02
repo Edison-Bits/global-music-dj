@@ -11,6 +11,12 @@ type ItemData = {
 type SeccionesValidas = 'Librerías' | 'Samples' | 'Efectos' | 'Pack' | 'Set DJ' | 'Colecciones DJ' | 'Backup';
 
 const packs: Record<string, ItemData> = {
+  candelaria: { 
+    titulo: "PACK CANDELARIA 2025", 
+    autor: "DJ JHON ERICKSON", 
+    portada: "/portada-candelaria.png", 
+    link: "#" 
+  },
   ayacucho: { titulo: "PACK CARNAVALES AYACUCHANOS 2026", autor: "DJ VENTU", portada: "/portada-ayacucho.jpg", link: "https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing" },
   alan: { titulo: "PACK STYLE ALAN WALKER 2026", autor: "DJ ENZO VIP", portada: "/portada-alan.png", link: "https://drive.google.com/drive/folders/1_-vzYZTi4sG-fQSnl8epaJg31ymgOnip?usp=sharing" },
   sureno: { titulo: "PACK SUREÑO II 2026", autor: "DJ ENZO VIP", portada: "/portada-sureno.png", link: "https://drive.google.com/drive/folders/1erG_LvX_ml5DnTL7dIv-E3ZD-sItK2I1?usp=sharing" },
@@ -143,7 +149,6 @@ export default function Home() {
                     <article 
                         key={key} 
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        /* SOMBRA SINCRONIZADA: Eliminada la sombra blanca, ahora usa currentColor que es el color espectral */
                         className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/25 transition-all duration-500 hover:-translate-y-3 hover:border-spectral hover:shadow-[0_0_60px_currentColor] shadow-xl"
                         onClick={() => setPackAbierto(key)}
                     >
