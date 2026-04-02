@@ -15,7 +15,7 @@ const packs: Record<string, ItemData> = {
     titulo: "PACK CANDELARIA 2025", 
     autor: "DJ JHON ERICKSON", 
     portada: "/portada-candelaria.png", 
-    link: "#" 
+    link: "https://drive.google.com/drive/folders/1boxs9ehYlW92R6n_OUFyAw6h_b7O_GWE?usp=drive_link" 
   },
   ayacucho: { titulo: "PACK CARNAVALES AYACUCHANOS 2026", autor: "DJ VENTU", portada: "/portada-ayacucho.jpg", link: "https://drive.google.com/drive/folders/1YblcId_Jzh3pRRk5Y-028qd9VS7T-RXM?usp=sharing" },
   alan: { titulo: "PACK STYLE ALAN WALKER 2026", autor: "DJ ENZO VIP", portada: "/portada-alan.png", link: "https://drive.google.com/drive/folders/1_-vzYZTi4sG-fQSnl8epaJg31ymgOnip?usp=sharing" },
@@ -31,7 +31,6 @@ const backups: Record<string, ItemData> = {
   lopez: { titulo: "BACKUP DJ LOPEZ", autor: "DJ LOPEZ", portada: "/portada-lopez.png", link: "https://drive.google.com/drive/folders/1imMIi36BoKoQWkvNmmvTWnGjIUGr8c-H?usp=drive_link" } 
 };
 
-/* --- COLECCIONES ACTUALIZADAS CON FOTOS REALES --- */
 const colecciones: Record<string, ItemData> = {
   elmer: { 
     titulo: "COLECCION DE ELMER MIX 2025 VOL 01 - 07", 
@@ -149,7 +148,7 @@ export default function Home() {
                     <article 
                         key={key} 
                         style={{ animationDelay: `${index * 0.1}s` }}
-                        className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/25 transition-all duration-500 hover:-translate-y-3 hover:border-spectral hover:shadow-[0_0_60px_currentColor] shadow-xl"
+                        className="animate-card-entry group relative bg-spectral/5 border border-white/5 p-6 rounded-3xl flex flex-col backdrop-blur-md hover:bg-spectral/25 transition-all duration-500 hover:-translate-y-3 hover:border-spectral hover:shadow-[0_0_60px_currentColor] shadow-xl cursor-pointer"
                         onClick={() => setPackAbierto(key)}
                     >
                         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-spectral/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
